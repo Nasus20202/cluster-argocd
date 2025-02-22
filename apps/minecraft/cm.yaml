@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: minecraft-server-cm
+data:
+  EULA: "true"
+  TYPE: PAPER
+  VIEW_DISTANCE: "10"
+  MEMORY: 4G
+  ICON: https://yt3.googleusercontent.com/ytc/AIdro_kf1TkPhYY-Eenmd5l5DrISeGYfDl2pN7tMnXy5Br4x6w=s800-c-k-c0x00ffffff-no-rj
+  ANNOUNCE_PLAYER_ACHIEVEMENTS: "false"
+  SNOOPER_ENABLED: "false"
+  MODE: survival
+  DIFFICULTY: hard
+  MOTD: |
+    \u00a79        Minecraft on Kubernetes\u00a7r
+    \u00a7b            \u2638 Cloud native \u2638
+  ONLINE_MODE: "false"

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: logenz
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: logenz
+  template:
+    metadata:
+      labels:
+        app: logenz
+    spec:
+      containers:
+        - name: logenz
+          image: ghcr.io/nasus20202/logenz
+          envFrom:
+            - secretRef:
+                name: logenz-secret
+          resources:
+            requests:
+              memory: "75Mi"
+              cpu: "10m"
+            limits:
+              memory: "75Mi"

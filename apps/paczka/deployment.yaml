@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paczka
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: paczka
+  template:
+    metadata:
+      labels:
+        app: paczka
+    spec:
+      containers:
+        - name: paczka
+          image: filebrowser/filebrowser
+          args:
+            [
+              "-d",
+              "/database/filebrowser.db",
+              "--token-expiration-time",
+              "720h",
+            ]
+          ports:
+            - name: http
+              containerPort: 80
+          resources:
+            requests:
+              memory: "100Mi"
+              cpu: "10m"
+            limits:
+              memory: "100Mi"
+          volumeMounts:
+            - name: paczka
+              mountPath: /srv
+            - name: paczka
+              mountPath: /database
+      volumes:
+        - name: paczka
+          persistentVolumeClaim:
+            claimName: paczka-pvc

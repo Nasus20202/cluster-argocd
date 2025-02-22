@@ -1,0 +1,40 @@
+nextcloud:
+  host: cloud.nasus.dev
+
+persistence:
+  enabled: true
+  size: 30Gi
+
+internalDatabase:
+  enabled: false
+
+externalDatabase:
+  enabled: true
+  type: postgresql
+  host: postgres-postgresql.postgres
+  existingSecret:
+    enabled: true
+    secretName: nextcloud-postresql-secret
+    usernameKey: username
+    passwordKey: password
+    databaseKey: database
+
+cronjob:
+  enabled: true
+
+resources:
+  requests:
+    memory: "500Mi"
+    cpu: "30m"
+  limits:
+    memory: "500Mi"
+
+ingress:
+  enabled: true
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/proxy-body-size: 10m
+  tls:
+    - secretName: nextcloud-tls
+      hosts:
+        - cloud.nasus.dev

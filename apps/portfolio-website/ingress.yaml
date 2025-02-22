@@ -1,0 +1,38 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: portfolio-website
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: nasuta.dev
+      http: &http-rules
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: portfolio-website
+                port:
+                  name: http
+    - host: www.nasuta.dev
+      http: *http-rules
+    - host: krzysztof.nasuta.dev
+      http: *http-rules
+    - host: www.krzysztof.nasuta.dev
+      http: *http-rules
+    - host: nasus.dev
+      http: *http-rules
+    - host: www.nasus.dev
+      http: *http-rules
+  tls:
+    - hosts:
+        - nasuta.dev
+        - www.nasuta.dev
+        - krzysztof.nasuta.dev
+        - www.krzysztof.nasuta.dev
+        - nasus.dev
+        - www.nasus.dev
+      secretName: portfolio-website-tls

@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shlink
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shlink
+  template:
+    metadata:
+      labels:
+        app: shlink
+    spec:
+      containers:
+        - name: shlink
+          image: shlinkio/shlink:stable
+          envFrom:
+            - configMapRef:
+                name: shlink-cm
+            - secretRef:
+                name: shlink-secret
+          ports:
+            - name: http
+              containerPort: 8080
+          resources:
+            requests:
+              memory: "200Mi"
+              cpu: "10m"
+            limits:
+              memory: "200Mi"

@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vodka
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vodka
+  template:
+    metadata:
+      labels:
+        app: vodka
+    spec:
+      containers:
+        - name: vodka
+          image: ghcr.io/nasus20202/vodka
+          envFrom:
+            - configMapRef:
+                name: vodka-cm
+            - secretRef:
+                name: vodka-secret
+          resources:
+            requests:
+              memory: "50Mi"
+              cpu: "10m"
+            limits:
+              memory: "50Mi"
+          volumeMounts:
+            - name: vodka-data
+              mountPath: "/app/data"
+      volumes:
+        - name: vodka-data
+          persistentVolumeClaim:
+            claimName: vodka-pvc

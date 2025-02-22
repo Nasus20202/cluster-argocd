@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: shlink
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: link.nasus.dev
+      http: &http-rules
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: shlink
+                port:
+                  name: http
+    - host: l.nasus.dev
+      http: *http-rules
+
+  tls:
+    - hosts:
+        - link.nasus.dev
+        - l.nasus.dev
+      secretName: shlink-tls

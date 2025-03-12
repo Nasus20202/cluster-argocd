@@ -29,3 +29,30 @@ spec:
               cpu: "10m"
             limits:
               memory: "200Mi"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shlink-web-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shlink-web-client
+  template:
+    metadata:
+      labels:
+        app: shlink-web-client
+    spec:
+      containers:
+        - name: shlink-web-client
+          image: shlinkio/shlink-web-client:stable
+          ports:
+            - name: http
+              containerPort: 8080
+          resources:
+            requests:
+              memory: "10Mi"
+              cpu: "10m"
+            limits:
+              memory: "10Mi"

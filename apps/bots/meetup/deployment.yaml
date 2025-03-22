@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: meetup
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: meetup
+  template:
+    metadata:
+      labels:
+        app: meetup
+    spec:
+      initContainers:
+        - name: chown-db-data
+          image: busybox
+          command: ["chown", "-R", "1000:1000", "/db"]
+          volumeMounts:
+            - name: meetup-data
+              mountPath: "/db"
+      containers:
+        - name: meetup
+          image: ghcr.io/kanareklife/meetupbot:main
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: meetup-cm
+            - secretRef:
+                name: meetup-secret
+          resources:
+            requests:
+              memory: "150Mi"
+              cpu: "10m"
+            limits:
+              memory: "150Mi"
+          volumeMounts:
+            - name: meetup-data
+              mountPath: "/db"
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+            fsGroup: 1000
+      volumes:
+        - name: meetup-data
+          persistentVolumeClaim:
+            claimName: meetup-pvc

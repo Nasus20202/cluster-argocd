@@ -27,10 +27,10 @@ spec:
               containerPort: 80
           resources:
             requests:
-              memory: "150Mi"
+              memory: "100Mi"
               cpu: "10m"
             limits:
-              memory: "150Mi"
+              memory: "100Mi"
           volumeMounts:
             - name: paczka
               mountPath: /srv

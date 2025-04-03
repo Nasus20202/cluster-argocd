@@ -21,16 +21,17 @@ spec:
               "/database/filebrowser.db",
               "--token-expiration-time",
               "720h",
+              "--disable-thumbnails",
             ]
           ports:
             - name: http
               containerPort: 80
           resources:
             requests:
-              memory: "100Mi"
+              memory: "50Mi"
               cpu: "10m"
             limits:
-              memory: "100Mi"
+              memory: "50Mi"
           volumeMounts:
             - name: paczka
               mountPath: /srv

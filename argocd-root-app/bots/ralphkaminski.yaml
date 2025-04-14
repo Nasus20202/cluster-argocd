@@ -12,7 +12,7 @@ spec:
     targetRevision: main
     path: apps/bots/ralphkaminski
   destination:
-    server: https://kubernetes.default.svc
+    name: in-cluster
     namespace: bots
   syncPolicy:
     automated:

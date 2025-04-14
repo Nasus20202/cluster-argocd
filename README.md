@@ -24,6 +24,7 @@ kubeseal -f secret.yaml -w sealedsecret.yaml --controller-namespace sealed-secre
   - [`logenz`](./apps/bots/logenz/) - welcoming bot ([Nasus20202/Logenz](https://github.com/Nasus20202/Logenz))
   - [`ralphkaminski`](./apps/bots/ralphkaminski/) - bot singing every hour ([Nasus20202/RalphKaminski](https://github.com/Nasus20202/RalphKaminski))
   - [`vodka`](./apps/bots/vodka/) - Lecture list bot ([Nasus20202/Vodka](https://github.com/nasus20202/Vodka))
+- [`change-detection`](./apps/change-detection/) - Automated website change detector ([dgtlmoon/changedetection.io](https://github.com/dgtlmoon/changedetection.io))
 - [`minecraft`](./apps/minecraft/) - Minecraft server ([itzg/minecraft-server](https://github.com/itzg/docker-minecraft-server))
 - [`nextcloud`](./apps/nextcloud/) - self hosted cloud storage ([nextcloud/helm](https://github.com/nextcloud/helm))
 - [`paczka`](./apps/paczka/) - GUT helpful resources hosted with FileBrowser ([filebrowser/filebrowser](https://github.com/filebrowser/filebrowser))

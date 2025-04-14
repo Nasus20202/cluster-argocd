@@ -21,7 +21,7 @@ spec:
       targetRevision: main
       path: apps/nextcloud/manifests
   destination:
-    server: https://kubernetes.default.svc
+    name: in-cluster
     namespace: nextcloud
   syncPolicy:
     automated:

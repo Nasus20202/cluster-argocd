@@ -12,7 +12,7 @@ spec:
     targetRevision: main
     path: apps/stirling-pdf
   destination:
-    server: https://kubernetes.default.svc
+    name: in-cluster
     namespace: stirling-pdf
   syncPolicy:
     automated:

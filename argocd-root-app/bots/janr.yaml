@@ -12,7 +12,7 @@ spec:
     targetRevision: main
     path: apps/bots/janr
   destination:
-    server: https://kubernetes.default.svc
+    name: in-cluster
     namespace: bots
   syncPolicy:
     automated:

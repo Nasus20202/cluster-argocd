@@ -12,7 +12,7 @@ spec:
     targetRevision: main
     path: apps/shlink
   destination:
-    server: https://kubernetes.default.svc
+    name: in-cluster
     namespace: shlink
   syncPolicy:
     automated:

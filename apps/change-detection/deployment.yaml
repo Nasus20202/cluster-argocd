@@ -27,10 +27,10 @@ spec:
               containerPort: 5000
           resources:
             requests:
-              memory: "200Mi"
+              memory: "250Mi"
               cpu: "10m"
             limits:
-              memory: "200Mi"
+              memory: "250Mi"
           volumeMounts:
             - name: change-detection-data
               mountPath: /datastore
@@ -70,7 +70,7 @@ spec:
               value: "10"
           resources:
             requests:
-              memory: "500Mi"
+              memory: "350Mi"
               cpu: "40m"
             limits:
-              memory: "500Mi"
+              memory: "750Mi"

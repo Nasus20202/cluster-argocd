@@ -7,13 +7,3 @@ spec:
   resources:
     requests:
       storage: 30Gi
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: immich-db-pvc
-spec:
-  accessModes: ["ReadWriteMany"]
-  resources:
-    requests:
-      storage: 3Gi

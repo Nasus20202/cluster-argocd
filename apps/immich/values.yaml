@@ -32,6 +32,16 @@ server:
 
 redis:
   enabled: true
+  master:
+    kind: Deployment
+    persistence:
+      enabled: false
+    resources:
+      requests:
+        memory: 100Mi
+        cpu: 10m
+      limits:
+        memory: 100Mi
 
 machine-learning:
   resources:

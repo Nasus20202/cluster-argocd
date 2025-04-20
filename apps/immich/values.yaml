@@ -1,0 +1,59 @@
+image:
+  tag: release
+
+immich:
+  persistence:
+    library:
+      existingClaim: immich-library-pvc
+
+server:
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+        nginx.ingress.kubernetes.io/proxy-body-size: "0"
+      hosts:
+        - host: immich.nasus.dev
+          paths:
+            - path: "/"
+      tls:
+        - hosts:
+            - immich.nasus.dev
+          secretName: immich-tls
+  resources:
+    requests:
+      memory: 1Gi
+      cpu: 30m
+    limits:
+      memory: 1Gi
+  image:
+    pullPolicy: Always
+
+redis:
+  enabled: true
+
+machine-learning:
+  resources:
+    requests:
+      memory: 500Mi
+      cpu: 10m
+    limits:
+      memory: 2Gi
+  image:
+    pullPolicy: Always
+
+env:
+  DB_HOSTNAME: immich-db
+  DB_USERNAME:
+    secretKeyRef:
+      name: immich-db-secret
+      key: DB_USERNAME
+  DB_DATABASE_NAME:
+    secretKeyRef:
+      name: immich-db-secret
+      key: DB_DATABASE_NAME
+  DB_PASSWORD:
+    secretKeyRef:
+      name: immich-db-secret
+      key: DB_PASSWORD

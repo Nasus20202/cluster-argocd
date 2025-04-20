@@ -26,6 +26,7 @@ kubeseal -f secret.yaml -w sealedsecret.yaml --controller-namespace sealed-secre
   - [`vodka`](./apps/bots/vodka/) - Lecture list bot ([Nasus20202/Vodka](https://github.com/nasus20202/Vodka))
 - [`change-detection`](./apps/change-detection/) - Automated website change detector ([dgtlmoon/changedetection.io](https://github.com/dgtlmoon/changedetection.io))
 - [`convertx`](./apps/convertx/) - Online file converter ([C4illin/ConvertX](https://github.com/C4illin/ConvertX))
+- [`immich`](./apps/immich/) - self hosted photo and video management ([immich-app/immich](https://github.com/immich-app/immich))
 - [`minecraft`](./apps/minecraft/) - Minecraft server ([itzg/minecraft-server](https://github.com/itzg/docker-minecraft-server))
 - [`nextcloud`](./apps/nextcloud/) - self hosted cloud storage ([nextcloud/helm](https://github.com/nextcloud/helm))
 - [`paczka`](./apps/paczka/) - GUT helpful resources hosted with FileBrowser ([filebrowser/filebrowser](https://github.com/filebrowser/filebrowser))

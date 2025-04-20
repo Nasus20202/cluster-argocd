@@ -1,0 +1,42 @@
+domain: https://vault.nasus.dev
+signupsAllowed: false
+invitationOrgName: Nasus Vault
+
+ingress:
+  enabled: true
+  hostname: vault.nasus.dev
+  class: nginx
+  additionalAnnotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  tlsSecret: vaultwarden-tls
+
+timeZone: Europe/Warsaw
+
+adminToken:
+  existingSecret: vaultwarden-admin-secret
+  existingSecretKey: admin-token
+
+storage:
+  data:
+    name: vaultwarden-pvc
+    size: 1Gi
+    accessMode: ReadWriteOnce
+
+smtp:
+  host: smtp.purelymail.com
+  security: force_tls
+  port: 465
+  from: vault@nasus.dev
+  fromName: Nasus Vault
+  existingSecret: vaultwarden-smtp-secret
+  username:
+    existingSecretKey: smtp-username
+  password:
+    existingSecretKey: smtp-password
+
+resources:
+  requests:
+    cpu: 10m
+    memory: 100Mi
+  limits:
+    memory: 100Mi

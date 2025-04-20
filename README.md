@@ -35,3 +35,4 @@ kubeseal -f secret.yaml -w sealedsecret.yaml --controller-namespace sealed-secre
 - [`shlink`](./apps/shlink/) - URL shortener ([shlinkio/shlink](https://github.com/shlinkio/shlink))
 - [`stirling-pdf`](./apps/stirling-pdf/) - online PDF tool ([Stirling-Tools/Stirling-PDF](https://github.com/Stirling-Tools/Stirling-PDF))
 - [`uptime-kuma`](./apps/uptime-kuma/) - uptime monitor ([louislam/uptime-kuma](https://github.com/louislam/uptime-kuma))
+- [`vaultwarden`](./apps/vaultwarden/) - self hosted password manager ([dani-garcia/vaultwarden](https://github.com/dani-garcia/vaultwarden))

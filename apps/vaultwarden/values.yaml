@@ -13,8 +13,9 @@ ingress:
 timeZone: Europe/Warsaw
 
 adminToken:
-  existingSecret: vaultwarden-admin-secret
-  existingSecretKey: admin-token
+  # existingSecret: vaultwarden-admin-secret
+  # existingSecretKey: admin-token
+  value: ""
 
 storage:
   data:

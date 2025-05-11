@@ -8,7 +8,7 @@ This app contains application definitions for other apps in this repository and 
 kubectl apply -f argocd-root-app.yaml
 ```
 
-### Seal secrets
+### Sealed secrets
 
 To convert an existing secret to a sealed secret, you can use the following command:
 

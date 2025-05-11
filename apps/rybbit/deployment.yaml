@@ -1,0 +1,123 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clickhouse
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: clickhouse
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: clickhouse
+    spec:
+      containers:
+        - name: clickhouse
+          image: clickhouse/clickhouse-server:25.4.2
+          ports:
+            - name: http
+              containerPort: 8123
+            - name: clickhouse
+              containerPort: 9000
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/clickhouse
+            - name: config
+              mountPath: /etc/clickhouse-server/config.d
+          envFrom:
+            - secretRef:
+                name: clickhouse-secret
+          readinessProbe:
+            httpGet:
+              path: /ping
+              port: http
+          resources:
+            requests:
+              memory: "500Mi"
+              cpu: "10m"
+            limits:
+              memory: "500Mi"
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: clickhouse-pvc
+        - name: config
+          configMap:
+            name: clickhouse-config
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rybbit-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rybbit-backend
+  template:
+    metadata:
+      labels:
+        app: rybbit-backend
+    spec:
+      containers:
+        - name: rybbit-backend
+          image: ghcr.io/rybbit-io/rybbit-backend
+          ports:
+            - name: http
+              containerPort: 3001
+          envFrom:
+            - configMapRef:
+                name: rybbit-config
+            - secretRef:
+                name: clickhouse-secret
+            - secretRef:
+                name: postgres-secret
+            - secretRef:
+                name: better-auth-secret
+          resources:
+            requests:
+              memory: "300Mi"
+              cpu: "10m"
+            limits:
+              memory: "300Mi"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rybbit-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rybbit-client
+  template:
+    metadata:
+      labels:
+        app: rybbit-client
+    spec:
+      containers:
+        - name: client
+          image: ghcr.io/rybbit-io/rybbit-client
+          ports:
+            - name: http
+              containerPort: 3002
+          env:
+            - name: NEXT_PUBLIC_BACKEND_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: rybbit-config
+                  key: BASE_URL
+            - name: NEXT_PUBLIC_DISABLE_SIGNUP
+              valueFrom:
+                configMapKeyRef:
+                  name: rybbit-config
+                  key: DISABLE_SIGNUP
+          resources:
+            requests:
+              memory: "100Mi"
+              cpu: "10m"
+            limits:
+              memory: "100Mi"

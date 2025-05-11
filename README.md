@@ -32,6 +32,7 @@ kubeseal -f secret.yaml -w sealedsecret.yaml --controller-namespace sealed-secre
 - [`paczka`](./apps/paczka/) - GUT helpful resources hosted with FileBrowser ([filebrowser/filebrowser](https://github.com/filebrowser/filebrowser))
 - [`portfolio-website`](./apps/portfolio-website/) - my personal website ([Nasus20202/portfolio-website](https://github.com/nasus20202/portfolio-website))
 - [`postgres`](./apps/postgres/) - PostgreSQL database ([bitnami/postgresql](https://github.com/bitnami/charts/tree/main/bitnami/postgresql))
+- [`rybbit`](./apps/rybbit/) - self hosted analytics platform ([rybbit-io/rybbit](https://github.com/rybbit-io/rybbit))
 - [`sealed-secrets`](./apps/sealed-secrets/) - Kubernetes controller to manage sealed secrets ([bitnami/sealed-secrets](https://github.com/bitnami-labs/sealed-secrets))
 - [`shlink`](./apps/shlink/) - URL shortener ([shlinkio/shlink](https://github.com/shlinkio/shlink))
 - [`stirling-pdf`](./apps/stirling-pdf/) - online PDF tool ([Stirling-Tools/Stirling-PDF](https://github.com/Stirling-Tools/Stirling-PDF))

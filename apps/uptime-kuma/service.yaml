@@ -11,3 +11,18 @@ spec:
       port: 3001
       targetPort: 3001
   type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: authentik-outpost
+spec:
+  type: ExternalName
+  externalName: ak-outpost-nginx-ingress-controller-outpost.authentik.svc.cluster.local
+  ports:
+    - name: http
+      port: 9000
+      targetPort: 9000
+    - name: https
+      port: 9443
+      targetPort: 9443

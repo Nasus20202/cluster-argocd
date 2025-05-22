@@ -14,7 +14,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: uptime-kuma
+                name: authentik-outpost
                 port:
                   name: http
   tls:

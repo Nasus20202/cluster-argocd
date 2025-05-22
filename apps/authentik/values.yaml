@@ -34,6 +34,12 @@ server:
     enabled: true
     serviceMonitor:
       enabled: true
+  resources:
+    requests:
+      memory: 750Mi
+      cpu: 50m
+    limits:
+      memory: 750Mi
 
 worker:
   envFrom:
@@ -43,6 +49,12 @@ worker:
         name: authentik-db-secret
     - secretRef:
         name: authentik-smtp-secret
+  resources:
+    requests:
+      memory: 500Mi
+      cpu: 50m
+    limits:
+      memory: 500Mi
 
 redis:
   enabled: true
@@ -50,3 +62,9 @@ redis:
     kind: Deployment
     persistence:
       enabled: false
+    resources:
+      requests:
+        memory: 100Mi
+        cpu: 30m
+      limits:
+        memory: 100Mi

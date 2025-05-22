@@ -1,0 +1,52 @@
+authentik:
+  postgresql:
+    host: postgres-postgresql.postgres
+    name: authentik
+    user: authentik
+  email:
+    host: smtp.purelymail.com
+    port: 465
+    username: sso@nasus.dev
+    use_ssl: true
+    from: "Nasus SSO <sso@nasus.dev>"
+
+server:
+  envFrom:
+    - secretRef:
+        name: authentik-secret-key
+    - secretRef:
+        name: authentik-db-secret
+    - secretRef:
+        name: authentik-smtp-secret
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    annotations:
+      kubernetes.io/ingress.class: "nginx"
+      cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    hosts:
+      - sso.nasus.dev
+    tls:
+      - hosts:
+          - sso.nasus.dev
+        secretName: authentik-tls
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+
+worker:
+  envFrom:
+    - secretRef:
+        name: authentik-secret-key
+    - secretRef:
+        name: authentik-db-secret
+    - secretRef:
+        name: authentik-smtp-secret
+
+redis:
+  enabled: true
+  master:
+    kind: Deployment
+    persistence:
+      enabled: false

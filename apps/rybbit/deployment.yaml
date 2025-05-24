@@ -77,6 +77,10 @@ spec:
                 name: postgres-secret
             - secretRef:
                 name: better-auth-secret
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
           resources:
             requests:
               memory: 300Mi

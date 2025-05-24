@@ -17,6 +17,9 @@ spec:
     - repoURL: https://github.com/Nasus20202/cluster-argocd.git
       targetRevision: main
       ref: values
+    - repoURL: https://github.com/Nasus20202/cluster-argocd.git
+      targetRevision: main
+      path: apps/postgres/manifests
   destination:
     name: in-cluster
     namespace: postgres

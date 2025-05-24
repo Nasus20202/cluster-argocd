@@ -1,3 +1,15 @@
+global:
+  postgresql:
+    auth:
+      existingSecret: postgres-secret
+      secretKeys:
+        adminPasswordKey: postgres-password
+
 primary:
   persistence:
-    size: 5Gi
+    size: 10Gi
+
+metrics:
+  enabled: true
+  serviceMonitor:
+    enabled: true

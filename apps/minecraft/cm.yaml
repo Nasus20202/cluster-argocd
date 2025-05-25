@@ -6,7 +6,7 @@ data:
   EULA: "true"
   TYPE: PAPER
   VIEW_DISTANCE: "10"
-  MEMORY: 2G
+  MEMORY: 4G
   ICON: https://yt3.googleusercontent.com/ytc/AIdro_kf1TkPhYY-Eenmd5l5DrISeGYfDl2pN7tMnXy5Br4x6w=s800-c-k-c0x00ffffff-no-rj
   ANNOUNCE_PLAYER_ACHIEVEMENTS: "false"
   SNOOPER_ENABLED: "false"

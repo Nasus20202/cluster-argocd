@@ -47,6 +47,16 @@ spec:
       containers:
         - name: shlink-web-client
           image: shlinkio/shlink-web-client:stable
+          env:
+            - name: SHLINK_SERVER_URL
+              value: https://link.nasus.dev
+            - name: SHLINK_SERVER_NAME
+              value: link.nasus.dev
+            - name: SHLINK_SERVER_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: shlink-secret
+                  key: INITIAL_API_KEY
           ports:
             - name: http
               containerPort: 8080

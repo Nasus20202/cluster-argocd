@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: immich-db
-          image: docker.io/tensorchord/pgvecto-rs:pg14-v0.2.0
+          image: ghcr.io/immich-app/postgres:14-vectorchord0.3.0-pgvectors0.2.0
           ports:
             - name: postgres
               containerPort: 5432

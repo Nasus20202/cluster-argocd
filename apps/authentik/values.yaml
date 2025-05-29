@@ -30,7 +30,7 @@ server:
       - hosts:
           - sso.nasus.dev
         secretName: authentik-tls
-  metrics:
+  metrics: # For some reason, I also had to manually set the scrape_protocols to ["PrometheusText0.0.4"]
     enabled: true
     serviceMonitor:
       enabled: true

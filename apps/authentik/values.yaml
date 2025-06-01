@@ -51,10 +51,10 @@ worker:
         name: authentik-smtp-secret
   resources:
     requests:
-      memory: 500Mi
+      memory: 250Mi
       cpu: 50m
     limits:
-      memory: 500Mi
+      memory: 750Mi
 
 redis:
   enabled: true
@@ -64,7 +64,7 @@ redis:
       enabled: false
     resources:
       requests:
-        memory: 100Mi
+        memory: 50Mi
         cpu: 30m
       limits:
-        memory: 100Mi
+        memory: 50Mi

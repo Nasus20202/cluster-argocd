@@ -24,10 +24,10 @@ cronjob:
 
 resources:
   requests:
-    memory: "500Mi"
-    cpu: "30m"
+    memory: 250Mi
+    cpu: 30m
   limits:
-    memory: "500Mi"
+    memory: 500Mi
 
 ingress:
   enabled: true

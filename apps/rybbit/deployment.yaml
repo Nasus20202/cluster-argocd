@@ -36,7 +36,7 @@ spec:
               port: http
           resources:
             requests:
-              memory: 1Gi
+              memory: 500Mi
               cpu: 50m
             limits:
               memory: 1Gi
@@ -83,10 +83,10 @@ spec:
               port: http
           resources:
             requests:
-              memory: 300Mi
+              memory: 250Mi
               cpu: 10m
             limits:
-              memory: 300Mi
+              memory: 250Mi
 ---
 apiVersion: apps/v1
 kind: Deployment

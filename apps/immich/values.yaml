@@ -23,7 +23,7 @@ server:
           secretName: immich-tls
   resources:
     requests:
-      memory: 1Gi
+      memory: 500Mi
       cpu: 30m
     limits:
       memory: 1Gi
@@ -38,18 +38,12 @@ redis:
       enabled: false
     resources:
       requests:
-        memory: 100Mi
+        memory: 50Mi
         cpu: 30m
       limits:
-        memory: 100Mi
+        memory: 50Mi
 
 machine-learning:
-  resources:
-    requests:
-      memory: 500Mi
-      cpu: 10m
-    limits:
-      memory: 2Gi
   image:
     pullPolicy: Always
 

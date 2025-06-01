@@ -23,10 +23,10 @@ spec:
               containerPort: 3001
           resources:
             requests:
-              memory: "750Mi"
-              cpu: "100m"
+              memory: 500Mi
+              cpu: 20m
             limits:
-              memory: "750Mi"
+              memory: 750Mi
           volumeMounts:
             - name: uptime-kuma-data
               mountPath: "/app/data"

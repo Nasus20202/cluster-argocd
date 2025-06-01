@@ -29,10 +29,10 @@ spec:
               containerPort: 5000
           resources:
             requests:
-              memory: "250Mi"
-              cpu: "10m"
+              memory: 250Mi
+              cpu: 10m
             limits:
-              memory: "250Mi"
+              memory: 250Mi
           volumeMounts:
             - name: change-detection-data
               mountPath: /datastore
@@ -70,9 +70,3 @@ spec:
               value: "16"
             - name: MAX_CONCURRENT_CHROME_PROCESSES
               value: "10"
-          resources:
-            requests:
-              memory: "350Mi"
-              cpu: "40m"
-            limits:
-              memory: "750Mi"

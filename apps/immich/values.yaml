@@ -44,6 +44,12 @@ redis:
         memory: 50Mi
 
 machine-learning:
+  resources:
+    requests:
+      memory: 250Mi
+      cpu: 10m
+    limits:
+      memory: 2Gi
   image:
     pullPolicy: Always
 

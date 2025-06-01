@@ -70,3 +70,9 @@ spec:
               value: "16"
             - name: MAX_CONCURRENT_CHROME_PROCESSES
               value: "10"
+          resources:
+            requests:
+              memory: 100Mi
+              cpu: 10m
+            limits:
+              memory: 750Mi

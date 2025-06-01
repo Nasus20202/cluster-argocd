@@ -79,7 +79,7 @@ spec:
                 name: better-auth-secret
           readinessProbe:
             httpGet:
-              path: /health
+              path: /api/health
               port: http
           resources:
             requests:

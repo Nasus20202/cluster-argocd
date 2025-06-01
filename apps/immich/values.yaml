@@ -49,6 +49,7 @@ machine-learning:
       memory: 250Mi
       cpu: 10m
     limits:
+      cpu: 500m
       memory: 2Gi
   image:
     pullPolicy: Always

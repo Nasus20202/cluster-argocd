@@ -25,7 +25,13 @@ spec:
               value: "true"
           resources:
             requests:
-              memory: 100Mi
+              memory: 250Mi
               cpu: 10m
             limits:
               memory: 250Mi
+          volumeMounts:
+            - name: database
+              mountPath: /app/data
+      volumes:
+        - name: database
+          emptyDir: {}

@@ -9,3 +9,6 @@ data:
   PAPERLESS_DBUSER: paperless
   PAPERLESS_URL: https://paperless.nasus.dev
   PAPERLESS_APPS: allauth.socialaccount.providers.openid_connect
+  PAPERLESS_TIKA_ENABLED: "1"
+  PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://paperless-ngx-gotenberg:3000
+  PAPERLESS_TIKA_ENDPOINT: http://paperless-ngx-tika:9998

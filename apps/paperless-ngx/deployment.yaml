@@ -21,9 +21,9 @@ spec:
           resources:
             requests:
               cpu: 10m
-              memory: 50Mi
+              memory: 25Mi
             limits:
-              memory: 50Mi
+              memory: 25Mi
           readinessProbe:
             tcpSocket:
               port: valkey
@@ -90,3 +90,67 @@ spec:
             claimName: paperless-ngx-pvc
         - name: temporary
           emptyDir: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paperless-ngx-tika
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: paperless-ngx-tika
+  template:
+    metadata:
+      labels:
+        app: paperless-ngx-tika
+    spec:
+      containers:
+        - name: tika
+          image: apache/tika
+          ports:
+            - containerPort: 9998
+              name: http
+          resources:
+            requests:
+              cpu: 10m
+              memory: 250Mi
+            limits:
+              memory: 500Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paperless-ngx-gotenberg
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: paperless-ngx-gotenberg
+  template:
+    metadata:
+      labels:
+        app: paperless-ngx-gotenberg
+    spec:
+      containers:
+        - name: gotenberg
+          image: gotenberg/gotenberg
+          command:
+            [
+              "gotenberg",
+              "--chromium-disable-javascript=true",
+              "--chromium-allow-list=file:///tmp/.*",
+            ]
+          ports:
+            - containerPort: 3000
+              name: http
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+          resources:
+            requests:
+              cpu: 10m
+              memory: 250Mi
+            limits:
+              memory: 500Mi

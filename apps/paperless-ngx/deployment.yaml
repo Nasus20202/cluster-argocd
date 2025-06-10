@@ -1,0 +1,92 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paperless-ngx-valkey
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: paperless-ngx-valkey
+  template:
+    metadata:
+      labels:
+        app: paperless-ngx-valkey
+    spec:
+      containers:
+        - name: valkey
+          image: valkey/valkey:8-alpine
+          ports:
+            - containerPort: 6379
+              name: valkey
+          resources:
+            requests:
+              cpu: 10m
+              memory: 50Mi
+            limits:
+              memory: 50Mi
+          readinessProbe:
+            tcpSocket:
+              port: valkey
+          volumeMounts:
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: data
+          emptyDir: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paperless-ngx-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: paperless-ngx-server
+  template:
+    metadata:
+      labels:
+        app: paperless-ngx-server
+    spec:
+      containers:
+        - name: paperless-ngx
+          image: ghcr.io/paperless-ngx/paperless-ngx
+          ports:
+            - containerPort: 8000
+              name: http
+          envFrom:
+            - configMapRef:
+                name: paperless-ngx-config
+            - secretRef:
+                name: paperless-ngx-secret
+            - secretRef:
+                name: paperless-ngx-oidc-config
+          resources:
+            requests:
+              cpu: 30m
+              memory: 1Gi
+            limits:
+              memory: 1Gi
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          volumeMounts:
+            - name: data
+              mountPath: /usr/src/paperless/data
+              subPath: data
+            - name: data
+              mountPath: /usr/src/paperless/media
+              subPath: media
+            - name: temporary
+              mountPath: /usr/src/paperless/export
+              subPath: export
+            - name: temporary
+              mountPath: /usr/src/paperless/consume
+              subPath: consume
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: paperless-ngx-pvc
+        - name: temporary
+          emptyDir: {}

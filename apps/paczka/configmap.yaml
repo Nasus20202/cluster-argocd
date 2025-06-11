@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: paczka-config
+data:
+  config.yaml: |
+    server:
+      database: "/paczka/paczka.db"
+      sources:
+        - path: "/paczka/files"
+          name: Paczka
+    frontend:
+      name: "Paczka"
+      disableDefaultLinks: true
+    auth:
+      tokenExpirationHours: 720
+    userDefaults:
+      singleClick: true
+      locale: pl
+      disableSettings: true 
+      lockPassword: true

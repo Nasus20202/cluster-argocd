@@ -31,6 +31,7 @@ kubeseal -f secret.yaml -w sealedsecret.yaml --controller-namespace sealed-secre
 - [`nextcloud`](./apps/nextcloud/) - Self hosted cloud storage ([nextcloud/helm](https://github.com/nextcloud/helm))
 - [`paczka`](./apps/paczka/) - GUT helpful resources hosted with FileBrowser ([filebrowser/filebrowser](https://github.com/filebrowser/filebrowser))
 - [`paperless-ngx`](./apps/paperless-ngx/) - Document management system ([paperless-ngx/paperless-ngx](https://github.com/paperless-ngx/paperless-ngx/))
+- [`pingvin-share`](./apps/pingvin-share/) - self-hosted file sharing platform ([stonith404/pingvin-share](https://github.com/stonith404/pingvin-share))
 - [`portfolio-website`](./apps/portfolio-website/) - My personal website ([Nasus20202/portfolio-website](https://github.com/nasus20202/portfolio-website))
 - [`postgres`](./apps/postgres/) - PostgreSQL database ([bitnami/postgresql](https://github.com/bitnami/charts/tree/main/bitnami/postgresql))
 - [`rybbit`](./apps/rybbit/) - Self hosted analytics platform ([rybbit-io/rybbit](https://github.com/rybbit-io/rybbit))

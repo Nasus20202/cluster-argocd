@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pingvin-share
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pingvin-share
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: pingvin-share
+    spec:
+      containers:
+        - name: pingvin-share
+          image: stonith404/pingvin-share
+          ports:
+            - name: http
+              containerPort: 3000
+          resources:
+            requests:
+              memory: 300Mi
+              cpu: 10m
+            limits:
+              memory: 300Mi
+          volumeMounts:
+            - name: data
+              mountPath: /opt/app/backend/data
+            - name: data
+              mountPath: /opt/app/frontend/public/img
+              subPath: images
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: pingvin-share-pvc

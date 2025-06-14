@@ -32,7 +32,8 @@ spec:
               memory: 250Mi
               cpu: 10m
             limits:
-              memory: 250Mi
+              cpu: 250m
+              memory: 500Mi
           volumeMounts:
             - name: change-detection-data
               mountPath: /datastore
@@ -75,5 +76,5 @@ spec:
               memory: 50Mi
               cpu: 10m
             limits:
-              cpu: 500m
+              cpu: 250m
               memory: 750Mi

@@ -1,11 +1,11 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended"],
-  "timezone": "Europe/Warsaw",
-  "schedule": ["before 8am on friday"],
   "labels": ["dependencies"],
   "assignees": ["@nasus20202"],
   "reviewers": ["@nasus20202"],
+  "prConcurrentLimit": 15,
+  "prHourlyLimit": 5,
   "commitMessagePrefix": "ci:",
   "semanticCommits": "enabled",
   "dependencyDashboard": true,

@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: pingvin-share
-          image: stonith404/pingvin-share
+          image: stonith404/pingvin-share:v1.13.0
           ports:
             - name: http
               containerPort: 3000

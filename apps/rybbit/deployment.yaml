@@ -64,7 +64,7 @@ spec:
     spec:
       containers:
         - name: rybbit-backend
-          image: ghcr.io/rybbit-io/rybbit-backend
+          image: ghcr.io/rybbit-io/rybbit-backend:v1.3.0
           ports:
             - name: http
               containerPort: 3001
@@ -104,7 +104,7 @@ spec:
     spec:
       containers:
         - name: client
-          image: ghcr.io/rybbit-io/rybbit-client
+          image: ghcr.io/rybbit-io/rybbit-client:v1.3.0
           ports:
             - name: http
               containerPort: 3002

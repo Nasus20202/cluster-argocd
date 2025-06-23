@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: change-detection
-          image: ghcr.io/dgtlmoon/changedetection.io
+          image: ghcr.io/dgtlmoon/changedetection.io:0.50.3
           env:
             - name: TZ
               value: "Europe/Warsaw"
@@ -58,7 +58,7 @@ spec:
     spec:
       containers:
         - name: browser-sockpuppet-chrome
-          image: dgtlmoon/sockpuppetbrowser:latest
+          image: dgtlmoon/sockpuppetbrowser:0.0.2
           ports:
             - name: playwright
               containerPort: 3000

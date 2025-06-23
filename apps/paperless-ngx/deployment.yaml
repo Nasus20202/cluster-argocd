@@ -50,7 +50,7 @@ spec:
     spec:
       containers:
         - name: paperless-ngx
-          image: ghcr.io/paperless-ngx/paperless-ngx
+          image: ghcr.io/paperless-ngx/paperless-ngx:2.17.1
           ports:
             - containerPort: 8000
               name: http
@@ -107,7 +107,7 @@ spec:
     spec:
       containers:
         - name: tika
-          image: apache/tika
+          image: apache/tika:3.2.0.0
           ports:
             - containerPort: 9998
               name: http
@@ -134,7 +134,7 @@ spec:
     spec:
       containers:
         - name: gotenberg
-          image: gotenberg/gotenberg
+          image: gotenberg/gotenberg:8.21
           command:
             [
               "gotenberg",

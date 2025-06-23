@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: shlink
-          image: shlinkio/shlink:stable
+          image: shlinkio/shlink:4.4
           envFrom:
             - configMapRef:
                 name: shlink-cm
@@ -46,7 +46,7 @@ spec:
     spec:
       containers:
         - name: shlink-web-client
-          image: shlinkio/shlink-web-client:stable
+          image: shlinkio/shlink-web-client:4.4
           env:
             - name: SHLINK_SERVER_URL
               value: https://link.nasus.dev

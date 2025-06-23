@@ -1,5 +1,5 @@
 image:
-  tag: release
+  tag: v1.135.3
 
 immich:
   persistence:
@@ -27,8 +27,6 @@ server:
       cpu: 30m
     limits:
       memory: 1Gi
-  image:
-    pullPolicy: Always
 
 redis:
   enabled: true
@@ -51,8 +49,6 @@ machine-learning:
     limits:
       cpu: 500m
       memory: 2Gi
-  image:
-    pullPolicy: Always
 
 env:
   DB_HOSTNAME: immich-db

@@ -43,6 +43,8 @@ spec:
   selector:
     matchLabels:
       app: paperless-ngx-server
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:

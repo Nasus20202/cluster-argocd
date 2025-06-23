@@ -1,0 +1,45 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "timezone": "Europe/Warsaw",
+  "schedule": ["before 8am on friday"],
+  "labels": ["dependencies"],
+  "assignees": ["@nasus20202"],
+  "reviewers": ["@nasus20202"],
+  "commitMessagePrefix": "ci:",
+  "semanticCommits": "enabled",
+  "dependencyDashboard": true,
+  "kubernetes": {
+    "managerFilePatterns": [
+      "/apps/.+\\.ya?ml$/",
+      "/argocd-root-app/.+\\.ya?ml$/"
+    ]
+  },
+  "argocd": {
+    "managerFilePatterns": ["/argocd-root-app/.+\\.ya?ml$/"]
+  },
+  "helm-values": {
+    "managerFilePatterns": ["/apps/.+/values\\.ya?ml$/"]
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Update ArgoCD Application targetRevision for Helm charts",
+      "managerFilePatterns": ["/argocd-root-app/.+\\.ya?ml$/"],
+      "matchStrings": [
+        "repoURL: (?<registryUrl>https://[^\\s]+)\\s+chart: (?<depName>[^\\s]+)\\s+targetRevision: \"?(?<currentValue>[^\"\\s]+)\"?"
+      ],
+      "datasourceTemplate": "helm"
+    },
+    {
+      "customType": "regex",
+      "description": "Update Docker images with branch tags",
+      "managerFilePatterns": ["/apps/.+\\.ya?ml$/"],
+      "matchStrings": [
+        "image: (?<depName>ghcr\\.io/[^:]+):(?<currentValue>main|master|latest)"
+      ],
+      "datasourceTemplate": "docker",
+      "versioningTemplate": "loose"
+    }
+  ]
+}

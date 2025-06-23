@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: change-detection
-          image: ghcr.io/dgtlmoon/changedetection.io:0.50.3
+          image: ghcr.io/dgtlmoon/changedetection.io:0.50.4
           env:
             - name: TZ
               value: "Europe/Warsaw"

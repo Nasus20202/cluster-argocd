@@ -19,6 +19,6 @@
     "managerFilePatterns": ["/argocd-root-app/.+\\.ya?ml$/"]
   },
   "helm-values": {
-    "managerFilePatterns": ["/apps/.+/values\\.ya?ml$/"]
+    "managerFilePatterns": ["/apps/.+values\\.ya?ml$/"]
   }
 }

@@ -1,5 +1,7 @@
 image:
-  tag: v1.135.3
+  repository: immich-app/immich-server
+  tag: v1.135.2
+  registry: ghcr.io
 
 immich:
   persistence:

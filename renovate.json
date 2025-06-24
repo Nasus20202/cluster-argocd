@@ -4,7 +4,7 @@
   "labels": ["dependencies"],
   "assignees": ["@nasus20202"],
   "reviewers": ["@nasus20202"],
-  "prConcurrentLimit": 15,
+  "prConcurrentLimit": 25,
   "prHourlyLimit": 5,
   "commitMessagePrefix": "ci:",
   "semanticCommits": "enabled",
@@ -20,26 +20,5 @@
   },
   "helm-values": {
     "managerFilePatterns": ["/apps/.+/values\\.ya?ml$/"]
-  },
-  "customManagers": [
-    {
-      "customType": "regex",
-      "description": "Update ArgoCD Application targetRevision for Helm charts",
-      "managerFilePatterns": ["/argocd-root-app/.+\\.ya?ml$/"],
-      "matchStrings": [
-        "repoURL: (?<registryUrl>https://[^\\s]+)\\s+chart: (?<depName>[^\\s]+)\\s+targetRevision: \"?(?<currentValue>[^\"\\s]+)\"?"
-      ],
-      "datasourceTemplate": "helm"
-    },
-    {
-      "customType": "regex",
-      "description": "Update Docker images with branch tags",
-      "managerFilePatterns": ["/apps/.+\\.ya?ml$/"],
-      "matchStrings": [
-        "image: (?<depName>ghcr\\.io/[^:]+):(?<currentValue>main|master|latest)"
-      ],
-      "datasourceTemplate": "docker",
-      "versioningTemplate": "loose"
-    }
-  ]
+  }
 }

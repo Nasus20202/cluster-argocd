@@ -9,6 +9,9 @@
   "commitMessagePrefix": "ci:",
   "semanticCommits": "enabled",
   "dependencyDashboard": true,
+  "automerge": true,
+  "automergeType": "pr",
+  "automergeStrategy": "fast-forward",
   "kubernetes": {
     "managerFilePatterns": [
       "/apps/.+\\.ya?ml$/",

@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: paczka
-          image: gtstef/filebrowser:0.7.10-beta
+          image: gtstef/filebrowser:0.7.11-beta
           ports:
             - name: http
               containerPort: 80

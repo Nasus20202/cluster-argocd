@@ -25,7 +25,7 @@ spec:
               memory: 500Mi
               cpu: 20m
             limits:
-              memory: 750Mi
+              memory: 1Gi
           volumeMounts:
             - name: uptime-kuma-data
               mountPath: "/app/data"

@@ -22,7 +22,8 @@ spec:
             httpGet:
               path: /api/v1/info/status
               port: http
-            initialDelaySeconds: 30
+            initialDelaySeconds: 60
+            periodSeconds: 10
           resources:
             requests:
               memory: 500Mi

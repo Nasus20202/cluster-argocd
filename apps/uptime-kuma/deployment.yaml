@@ -26,6 +26,10 @@ spec:
               cpu: 20m
             limits:
               memory: 1Gi
+          readinessProbe:
+            exec:
+              command:
+                - extra/healthcheck
           volumeMounts:
             - name: uptime-kuma-data
               mountPath: "/app/data"

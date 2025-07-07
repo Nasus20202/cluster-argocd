@@ -23,6 +23,10 @@ spec:
               value: "true"
             - name: ALLOW_UNAUTHENTICATED
               value: "true"
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
           resources:
             requests:
               memory: 250Mi

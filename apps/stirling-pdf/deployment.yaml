@@ -18,12 +18,15 @@ spec:
           ports:
             - name: http
               containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /api/v1/info/status
+              port: http
           livenessProbe:
             httpGet:
               path: /api/v1/info/status
               port: http
-            initialDelaySeconds: 60
-            periodSeconds: 10
+            initialDelaySeconds: 180
           resources:
             requests:
               memory: 500Mi

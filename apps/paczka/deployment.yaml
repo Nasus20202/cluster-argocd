@@ -26,6 +26,10 @@ spec:
               cpu: 10m
             limits:
               memory: 400Mi
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
           volumeMounts:
             - name: paczka
               mountPath: /paczka

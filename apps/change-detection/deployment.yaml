@@ -27,6 +27,10 @@ spec:
           ports:
             - name: http
               containerPort: 5000
+          readinessProbe:
+            httpGet:
+              path: /worker-health
+              port: http
           resources:
             requests:
               memory: 250Mi
@@ -71,6 +75,13 @@ spec:
               value: "16"
             - name: MAX_CONCURRENT_CHROME_PROCESSES
               value: "1"
+          readinessProbe:
+            exec:
+              command:
+                - python3
+                - /usr/src/app/docker-health-check.py
+                - --host
+                - http://localhost
           resources:
             requests:
               memory: 50Mi

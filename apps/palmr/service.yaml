@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: palmr
+spec:
+  selector:
+    app: palmr
+  ports:
+    - name: http
+      protocol: TCP
+      port: 5487
+      targetPort: 5487
+  type: ClusterIP

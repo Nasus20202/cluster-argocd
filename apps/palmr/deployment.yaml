@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: palmr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: palmr
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: palmr
+    spec:
+      containers:
+        - name: palmr
+          image: kyantech/palmr:v3.1.0-beta
+          ports:
+            - name: http
+              containerPort: 5487
+          env:
+            - name: ENABLE_S3
+              value: "false"
+            - name: SECURE_SITE
+              value: "true"
+          envFrom:
+            - secretRef:
+                name: palmr-secret
+          resources:
+            requests:
+              memory: 500Mi
+              cpu: 10m
+            limits:
+              memory: 500Mi
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          volumeMounts:
+            - name: data
+              mountPath: /app/server
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: palmr-pvc

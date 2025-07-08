@@ -28,6 +28,7 @@ kubeseal -f secret.yaml -w sealedsecret.yaml --controller-namespace sealed-secre
 - [`change-detection`](./apps/change-detection/) - Automated website change detector ([dgtlmoon/changedetection.io](https://github.com/dgtlmoon/changedetection.io))
 - [`convertx`](./apps/convertx/) - Online file converter ([C4illin/ConvertX](https://github.com/C4illin/ConvertX))
 - [`immich`](./apps/immich/) - Self hosted photo and video management ([immich-app/immich](https://github.com/immich-app/immich))
+- [`memos`](./apps/memos/) - Self hosted note-taking platform ([usememos/memos](https://github.com/usememos/memos))
 - [`nextcloud`](./apps/nextcloud/) - Self hosted cloud storage ([nextcloud/helm](https://github.com/nextcloud/helm))
 - [`paczka`](./apps/paczka/) - GUT helpful resources hosted with FileBrowser ([filebrowser/filebrowser](https://github.com/filebrowser/filebrowser))
 - [`palmr`](./apps/palmr/) - self-hosted file sharing platform ([kyantech/Palmr](https://github.com/kyantech/Palmr))

@@ -1,47 +1,44 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: palmr
+  name: memos
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: palmr
+      app: memos
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: palmr
+        app: memos
     spec:
       containers:
-        - name: palmr
-          image: kyantech/palmr:v3.1.0-beta
+        - name: memos
+          image: neosmemo/memos:0.24.4
           ports:
             - name: http
-              containerPort: 5487
+              containerPort: 5230
           env:
-            - name: ENABLE_S3
-              value: "false"
-            - name: SECURE_SITE
-              value: "true"
-          envFrom:
-            - secretRef:
-                name: palmr-secret
+            - name: MEMOS_MODE
+              value: "prod"
+            - name: MEMOS_PORT
+              value: "5230"
           resources:
             requests:
-              memory: 300Mi
+              memory: 50Mi
               cpu: 10m
             limits:
-              memory: 300Mi
+              memory: 50Mi
           readinessProbe:
             httpGet:
-              path: /
+              path: /healthz
               port: http
           volumeMounts:
             - name: data
-              mountPath: /app/server
+              mountPath: /var/opt/memos
       volumes:
         - name: data
           persistentVolumeClaim:
-            claimName: palmr-pvc
+            claimName: memos-pvc

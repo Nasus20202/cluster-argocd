@@ -6,7 +6,7 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: default
+  project: apps
   sources:
     - repoURL: registry-1.docker.io/bitnamicharts
       chart: postgresql

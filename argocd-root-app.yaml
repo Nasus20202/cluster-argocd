@@ -11,8 +11,6 @@ spec:
     repoURL: https://github.com/Nasus20202/cluster-argocd.git
     targetRevision: main
     path: argocd-root-app
-    directory:
-      recurse: true
   destination:
     name: in-cluster
     namespace: argocd

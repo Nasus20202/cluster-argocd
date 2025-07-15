@@ -1,6 +1,6 @@
 # Cluster ArgoCD
 
-### Root app - [`argocd-root-app`](./argocd-root-app/)
+### Root app - [`argocd-apps-root-app`](./argocd-apps-root-app/)
 
 This app contains application definitions for other apps in this repository and crate a namespace for them.
 

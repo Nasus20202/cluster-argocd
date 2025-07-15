@@ -5,7 +5,7 @@
 This app contains application definitions for other apps in this repository and crate a namespace for them.
 
 ```bash
-kubectl apply -f argocd-root-app.yaml
+kubectl apply -f argocd-root-app/argocd-root-app.yaml
 ```
 
 ### Sealed secrets

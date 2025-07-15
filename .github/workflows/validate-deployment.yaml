@@ -1,0 +1,40 @@
+name: Deployment validation
+run-name: Validate `${{ github.event.head_commit.message || github.event.pull_request.title }}`
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate-manifests:
+    name: Validate ${{ github.event.head_commit.message || github.event.pull_request.title }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v4
+
+      - name: Set up helm
+        uses: azure/setup-helm@v4
+
+      - name: Build all manifests
+        run: |
+          ./.github/workflows/scripts/build-local-manifests.sh
+
+      - name: Validate Kubernetes manifests
+        uses: docker://ghcr.io/yannh/kubeconform:latest
+        with:
+          entrypoint: "/kubeconform"
+          args: >-
+            -summary
+            -output pretty
+            -schema-location default
+            -schema-location https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json
+            ./manifests

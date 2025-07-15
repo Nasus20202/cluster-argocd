@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: palmr
-          image: kyantech/palmr:v3.1.1-beta
+          image: kyantech/palmr:v3.1.2-beta
           ports:
             - name: http
               containerPort: 5487

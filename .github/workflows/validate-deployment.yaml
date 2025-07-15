@@ -1,14 +1,12 @@
 name: Deployment validation
-run-name: Validate `${{ github.event.pull_request.title }}`
+run-name: Validate `${{ github.event.head_commit.message }}`
 
 on:
-  pull_request:
-    branches:
-      - main
+  push:
 
 jobs:
   validate-manifests:
-    name: Validate ${{ github.event.pull_request.title }}
+    name: Validate ${{ github.event.head_commit.message }}
 
     runs-on: ubuntu-latest
     steps:

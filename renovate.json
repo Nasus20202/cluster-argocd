@@ -21,11 +21,11 @@
   "kubernetes": {
     "managerFilePatterns": [
       "/apps/.+\\.ya?ml$/",
-      "/argocd-root-app/.+\\.ya?ml$/"
+      "/argocd-apps-root-app/.+\\.ya?ml$/"
     ]
   },
   "argocd": {
-    "managerFilePatterns": ["/argocd-root-app/.+\\.ya?ml$/"]
+    "managerFilePatterns": ["/argocd-apps-root-app/.+\\.ya?ml$/"]
   },
   "helm-values": {
     "managerFilePatterns": ["/apps/.+values\\.ya?ml$/"]

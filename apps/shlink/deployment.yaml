@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: shlink
-          image: shlinkio/shlink:4.4
+          image: shlinkio/shlink:4.4.6
           envFrom:
             - configMapRef:
                 name: shlink-cm

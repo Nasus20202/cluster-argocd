@@ -19,6 +19,9 @@ ARGOCD_APPS_DIR="${ROOT_DIR}/argocd-apps-root-app"
 MANIFESTS_DIR="${ROOT_DIR}/manifests"
 APPS_DIR="${ROOT_DIR}/apps"
 
+# Options
+FAIL_FAST=${FAIL_FAST:-false}  # Set to true to exit on first failure
+
 # Create manifests directory
 mkdir -p "${MANIFESTS_DIR}"
 
@@ -37,6 +40,27 @@ log_warning() {
 
 log_error() {
     echo -e "${RED}[ERROR]${NC} $1"
+}
+
+# Show usage information
+usage() {
+    cat << EOF
+Usage: $0 [options]
+
+This script generates Kubernetes manifests for all ArgoCD applications.
+
+Options:
+    -h, --help      Show this help message
+    -f, --fail-fast Exit immediately on first failure
+
+Environment Variables:
+    FAIL_FAST       Set to 'true' to enable fail-fast mode (default: false)
+
+Examples:
+    $0                    # Run normally, continue on failures
+    $0 --fail-fast        # Exit on first failure
+    FAIL_FAST=true $0     # Exit on first failure (using env var)
+EOF
 }
 
 # Function to extract application name from ArgoCD app file
@@ -301,20 +325,52 @@ main() {
             else
                 ((failed_count++)) || true
                 log_error "Failed to process $(basename "$app_file")"
+                
+                # Exit immediately if fail-fast is enabled
+                if [[ "$FAIL_FAST" == "true" ]]; then
+                    log_error "Fail-fast mode enabled. Exiting on first failure."
+                    exit 1
+                fi
             fi
         fi
     done
     
+    if [[ $failed_count -gt 0 ]]; then
+        log_error "Manifest generation failed!"
+        log_error "Processed: $processed_count applications"
+        log_error "Failed: $failed_count applications"
+        exit 1
+    fi
+    
     log_success "Manifest generation completed!"
     log_info "Processed: $processed_count applications"
-    if [[ $failed_count -gt 0 ]]; then
-        log_warning "Failed: $failed_count applications"
-    fi
     
     # Show summary
     log_info "Generated manifests in:"
     find "$MANIFESTS_DIR" -type f -name "*.yaml" | sort
 }
 
-# Run main function
-main "$@"
+# Parse command line arguments
+parse_args() {
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            -h|--help)
+                usage
+                exit 0
+                ;;
+            -f|--fail-fast)
+                FAIL_FAST=true
+                shift
+                ;;
+            *)
+                log_error "Unknown option: $1"
+                usage
+                exit 1
+                ;;
+        esac
+    done
+}
+
+# Parse arguments and run main function
+parse_args "$@"
+main

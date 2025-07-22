@@ -29,6 +29,9 @@ externalDatabase:
   existingSecret: harbor-db-secret
   existingSecretPasswordKey: db-password
 
+existingSecret: harbor-admin-secret
+existingSecretAdminPasswordKey: admin-password
+
 redis:
   enabled: true
   master:

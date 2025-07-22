@@ -15,9 +15,9 @@ persistence:
     registry:
       size: 10Gi
     jobservice:
-      size: 250Mi
-    trivy:
       size: 500Mi
+    trivy:
+      size: 2Gi
 
 postgresql:
   enabled: false

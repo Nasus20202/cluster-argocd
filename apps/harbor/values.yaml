@@ -1,0 +1,113 @@
+exposureType: ingress
+
+ingress:
+  core:
+    enabled: true
+    hostname: harbor.nasus.dev
+    annotations:
+      cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    tls: true
+    tlsSecret: harbor-tls
+
+externalURL: https://harbor.nasus.dev
+
+persistence:
+  persistentVolumeClaim:
+    registry:
+      size: 10Gi
+    jobservice:
+      size: 250Mi
+    trivy:
+      size: 500Mi
+
+postgresql:
+  enabled: false
+
+externalDatabase:
+  host: postgres-postgresql.postgres
+  user: harbor
+  coreDatabase: harbor
+  existingSecret: harbor-db-secret
+  existingSecretPasswordKey: db-password
+
+redis:
+  enabled: true
+  master:
+    persistence:
+      enabled: false
+    resources:
+      requests:
+        cpu: 10m
+        memory: 25Mi
+      limits:
+        memory: 25Mi
+
+portal:
+  resources:
+    requests:
+      cpu: 10m
+      memory: 50Mi
+    limits:
+      memory: 50Mi
+
+core:
+  resources:
+    requests:
+      cpu: 10m
+      memory: 100Mi
+    limits:
+      memory: 100Mi
+
+jobservice:
+  resources:
+    requests:
+      cpu: 10m
+      memory: 50Mi
+    limits:
+      memory: 50Mi
+  updateStrategy:
+    type: Recreate
+
+registry:
+  server:
+    resources:
+      requests:
+        cpu: 10m
+        memory: 50Mi
+      limits:
+        memory: 50Mi
+  controller:
+    resources:
+      requests:
+        cpu: 10m
+        memory: 50Mi
+      limits:
+        memory: 50Mi
+  updateStrategy:
+    type: Recreate
+
+trivy:
+  enabled: true
+  resources:
+    requests:
+      cpu: 10m
+      memory: 100Mi
+    limits:
+      memory: 500Mi
+
+migration:
+  enabled: false
+  resources:
+    requests:
+      cpu: 10m
+      memory: 50Mi
+    limits:
+      memory: 50Mi
+
+certificateVolume:
+  resources:
+    requests:
+      cpu: 10m
+      memory: 50Mi
+    limits:
+      memory: 50Mi

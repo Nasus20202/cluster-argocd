@@ -22,10 +22,10 @@ spec:
               containerPort: 80
           resources:
             requests:
-              memory: 400Mi
+              memory: 300Mi
               cpu: 10m
             limits:
-              memory: 400Mi
+              memory: 300Mi
           readinessProbe:
             httpGet:
               path: /health

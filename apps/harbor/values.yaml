@@ -98,7 +98,7 @@ trivy:
       memory: 500Mi
 
 migration:
-  enabled: true # This should be enabled after the initial setup
+  enabled: false # This can be enabled after the initial setup
   resources:
     requests:
       cpu: 10m

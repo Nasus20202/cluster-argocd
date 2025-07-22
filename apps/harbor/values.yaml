@@ -7,7 +7,6 @@ ingress:
     annotations:
       cert-manager.io/cluster-issuer: "letsencrypt-prod"
     tls: true
-    tlsSecret: harbor-tls
 
 externalURL: https://harbor.nasus.dev
 
@@ -37,7 +36,7 @@ redis:
       enabled: false
     resources:
       requests:
-        cpu: 10m
+        cpu: 30m
         memory: 25Mi
       limits:
         memory: 25Mi
@@ -96,7 +95,7 @@ trivy:
       memory: 500Mi
 
 migration:
-  enabled: false
+  enabled: true # This should be enabled after the initial setup
   resources:
     requests:
       cpu: 10m

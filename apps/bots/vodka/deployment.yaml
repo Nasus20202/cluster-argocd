@@ -25,8 +25,6 @@ spec:
           resources:
             requests:
               memory: "50Mi"
-            limits:
-              memory: "50Mi"
           volumeMounts:
             - name: vodka-data
               mountPath: "/app/data"

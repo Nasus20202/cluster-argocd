@@ -26,8 +26,6 @@ server:
   resources:
     requests:
       memory: 500Mi
-    limits:
-      memory: 1Gi
 
 redis:
   enabled: true
@@ -38,15 +36,11 @@ redis:
     resources:
       requests:
         memory: 50Mi
-      limits:
-        memory: 50Mi
 
 machine-learning:
   resources:
     requests:
       memory: 250Mi
-    limits:
-      memory: 2Gi
 
 env:
   DB_HOSTNAME: immich-db

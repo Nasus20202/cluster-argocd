@@ -38,5 +38,3 @@ smtp:
 resources:
   requests:
     memory: 100Mi
-  limits:
-    memory: 100Mi

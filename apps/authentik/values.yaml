@@ -38,8 +38,6 @@ server:
     requests:
       memory: 750Mi
       cpu: 25m
-    limits:
-      memory: 750Mi
 
 worker:
   envFrom:
@@ -53,8 +51,6 @@ worker:
     requests:
       memory: 500Mi
       cpu: 50m
-    limits:
-      memory: 750Mi
 
 redis:
   enabled: true
@@ -66,5 +62,3 @@ redis:
       requests:
         memory: 50Mi
         cpu: 25m
-      limits:
-        memory: 50Mi

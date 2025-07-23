@@ -30,8 +30,6 @@ spec:
           resources:
             requests:
               memory: 250Mi
-            limits:
-              memory: 250Mi
           volumeMounts:
             - name: database
               mountPath: /app/data

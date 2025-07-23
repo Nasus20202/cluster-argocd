@@ -34,8 +34,6 @@ spec:
           resources:
             requests:
               memory: 250Mi
-            limits:
-              memory: 500Mi
           volumeMounts:
             - name: change-detection-data
               mountPath: /datastore
@@ -82,6 +80,4 @@ spec:
                 - http://localhost
           resources:
             requests:
-              memory: 50Mi
-            limits:
-              memory: 750Mi
+              memory: 200Mi

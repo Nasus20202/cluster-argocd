@@ -21,8 +21,6 @@ spec:
           resources:
             requests:
               memory: 25Mi
-            limits:
-              memory: 25Mi
           readinessProbe:
             tcpSocket:
               port: valkey
@@ -64,9 +62,7 @@ spec:
                 name: paperless-ngx-oidc-config
           resources:
             requests:
-              memory: 1Gi
-            limits:
-              memory: 1Gi
+              memory: 750Mi
           readinessProbe:
             httpGet:
               path: /
@@ -114,8 +110,6 @@ spec:
           resources:
             requests:
               memory: 250Mi
-            limits:
-              memory: 500Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -149,6 +143,4 @@ spec:
               port: http
           resources:
             requests:
-              memory: 250Mi
-            limits:
-              memory: 500Mi
+              memory: 100Mi

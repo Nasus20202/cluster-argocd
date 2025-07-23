@@ -40,29 +40,21 @@ redis:
     resources:
       requests:
         memory: 25Mi
-      limits:
-        memory: 25Mi
 
 portal:
   resources:
     requests:
-      memory: 50Mi
-    limits:
       memory: 50Mi
 
 core:
   resources:
     requests:
       memory: 50Mi
-    limits:
-      memory: 200Mi
 
 jobservice:
   resources:
     requests:
       memory: 50Mi
-    limits:
-      memory: 200Mi
   updateStrategy:
     type: Recreate
 
@@ -71,13 +63,9 @@ registry:
     resources:
       requests:
         memory: 50Mi
-      limits:
-        memory: 50Mi
   controller:
     resources:
       requests:
-        memory: 50Mi
-      limits:
         memory: 50Mi
   updateStrategy:
     type: Recreate
@@ -87,22 +75,16 @@ trivy:
   resources:
     requests:
       memory: 100Mi
-    limits:
-      memory: 500Mi
 
 migration:
   enabled: false # This can be enabled after the initial setup
   resources:
     requests:
       memory: 50Mi
-    limits:
-      memory: 50Mi
 
 certificateVolume:
   resources:
     requests:
-      memory: 50Mi
-    limits:
       memory: 50Mi
 
 metrics:

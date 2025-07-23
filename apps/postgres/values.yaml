@@ -12,8 +12,6 @@ primary:
     requests:
       memory: 200Mi
       cpu: 30m
-    limits:
-      memory: 200Mi
 
 metrics:
   enabled: true
@@ -21,6 +19,4 @@ metrics:
     enabled: true
   resources:
     requests:
-      memory: 25Mi
-    limits:
       memory: 25Mi

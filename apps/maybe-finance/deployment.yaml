@@ -30,9 +30,7 @@ spec:
               name: http
           resources:
             requests:
-              memory: 500Mi
-            limits:
-              memory: 500Mi
+              memory: 300Mi
           readinessProbe:
             httpGet:
               path: /up
@@ -75,9 +73,7 @@ spec:
           command: ["bundle", "exec", "sidekiq"]
           resources:
             requests:
-              memory: 350Mi
-            limits:
-              memory: 350Mi
+              memory: 200Mi
           envFrom:
             - configMapRef:
                 name: maybe-finance-config
@@ -108,8 +104,6 @@ spec:
               name: redis
           resources:
             requests:
-              memory: 25Mi
-            limits:
               memory: 25Mi
           volumeMounts:
             - name: data

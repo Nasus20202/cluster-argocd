@@ -39,8 +39,6 @@ spec:
           resources:
             requests:
               memory: 250Mi
-            limits:
-              memory: 500Mi
           volumeMounts:
             - name: immich-db-data
               mountPath: /var/lib/postgresql/data

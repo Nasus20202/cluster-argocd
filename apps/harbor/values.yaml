@@ -113,3 +113,7 @@ certificateVolume:
       memory: 50Mi
     limits:
       memory: 50Mi
+
+metrics:
+  serviceMonitor:
+    enabled: true

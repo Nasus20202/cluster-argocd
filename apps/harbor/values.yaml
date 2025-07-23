@@ -39,7 +39,6 @@ redis:
       enabled: false
     resources:
       requests:
-        cpu: 30m
         memory: 25Mi
       limits:
         memory: 25Mi
@@ -47,7 +46,6 @@ redis:
 portal:
   resources:
     requests:
-      cpu: 10m
       memory: 50Mi
     limits:
       memory: 50Mi
@@ -55,7 +53,6 @@ portal:
 core:
   resources:
     requests:
-      cpu: 10m
       memory: 50Mi
     limits:
       memory: 200Mi
@@ -63,7 +60,6 @@ core:
 jobservice:
   resources:
     requests:
-      cpu: 10m
       memory: 50Mi
     limits:
       memory: 200Mi
@@ -74,14 +70,12 @@ registry:
   server:
     resources:
       requests:
-        cpu: 10m
         memory: 50Mi
       limits:
         memory: 50Mi
   controller:
     resources:
       requests:
-        cpu: 10m
         memory: 50Mi
       limits:
         memory: 50Mi
@@ -92,7 +86,6 @@ trivy:
   enabled: true
   resources:
     requests:
-      cpu: 10m
       memory: 100Mi
     limits:
       memory: 500Mi
@@ -101,7 +94,6 @@ migration:
   enabled: false # This can be enabled after the initial setup
   resources:
     requests:
-      cpu: 10m
       memory: 50Mi
     limits:
       memory: 50Mi
@@ -109,7 +101,6 @@ migration:
 certificateVolume:
   resources:
     requests:
-      cpu: 10m
       memory: 50Mi
     limits:
       memory: 50Mi

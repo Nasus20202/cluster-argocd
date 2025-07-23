@@ -37,7 +37,7 @@ server:
   resources:
     requests:
       memory: 750Mi
-      cpu: 50m
+      cpu: 25m
     limits:
       memory: 750Mi
 
@@ -65,6 +65,6 @@ redis:
     resources:
       requests:
         memory: 50Mi
-        cpu: 30m
+        cpu: 25m
       limits:
         memory: 50Mi

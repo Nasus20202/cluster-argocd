@@ -37,7 +37,6 @@ spec:
           resources:
             requests:
               memory: 750Mi
-              cpu: 50m
             limits:
               memory: 1.5Gi
       volumes:
@@ -84,7 +83,6 @@ spec:
           resources:
             requests:
               memory: 250Mi
-              cpu: 10m
             limits:
               memory: 250Mi
 ---
@@ -122,6 +120,5 @@ spec:
           resources:
             requests:
               memory: 100Mi
-              cpu: 10m
             limits:
               memory: 100Mi

@@ -26,7 +26,6 @@ server:
   resources:
     requests:
       memory: 500Mi
-      cpu: 30m
     limits:
       memory: 1Gi
 
@@ -39,7 +38,6 @@ redis:
     resources:
       requests:
         memory: 50Mi
-        cpu: 30m
       limits:
         memory: 50Mi
 
@@ -47,9 +45,7 @@ machine-learning:
   resources:
     requests:
       memory: 250Mi
-      cpu: 10m
     limits:
-      cpu: 500m
       memory: 2Gi
 
 env:

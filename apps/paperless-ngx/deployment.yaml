@@ -20,7 +20,6 @@ spec:
               name: valkey
           resources:
             requests:
-              cpu: 10m
               memory: 25Mi
             limits:
               memory: 25Mi
@@ -65,7 +64,6 @@ spec:
                 name: paperless-ngx-oidc-config
           resources:
             requests:
-              cpu: 30m
               memory: 1Gi
             limits:
               memory: 1Gi
@@ -115,7 +113,6 @@ spec:
               name: http
           resources:
             requests:
-              cpu: 10m
               memory: 250Mi
             limits:
               memory: 500Mi
@@ -152,7 +149,6 @@ spec:
               port: http
           resources:
             requests:
-              cpu: 10m
               memory: 250Mi
             limits:
               memory: 500Mi

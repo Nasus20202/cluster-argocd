@@ -25,6 +25,8 @@ spec:
               value: "false"
             - name: SECURE_SITE
               value: "true"
+            - name: DISABLE_FILESYSTEM_ENCRYPTION
+              value: "false"
           envFrom:
             - secretRef:
                 name: palmr-secret

@@ -32,7 +32,7 @@ kubeseal -f secret.yaml -w sealedsecret.yaml --controller-namespace sealed-secre
 - [`maybe-finance`](./apps/maybe-finance/) - Personal finance management ([maybe-finance/maybe](https://github.com/maybe-finance/maybe))
 - [`memos`](./apps/memos/) - Self hosted note-taking platform ([usememos/memos](https://github.com/usememos/memos))
 - [`nextcloud`](./apps/nextcloud/) - Self hosted cloud storage ([nextcloud/helm](https://github.com/nextcloud/helm))
-- [`paczka`](./apps/paczka/) - GUT helpful resources hosted with FileBrowser ([filebrowser/filebrowser](https://github.com/filebrowser/filebrowser))
+- [`paczka`](./apps/paczka/) - Helpful resources hosted with FileBrowser Quantum ([gtsteffaniak/filebrowser](https://github.com/gtsteffaniak/filebrowser))
 - [`palmr`](./apps/palmr/) - self-hosted file sharing platform ([kyantech/Palmr](https://github.com/kyantech/Palmr))
 - [`paperless-ngx`](./apps/paperless-ngx/) - Document management system ([paperless-ngx/paperless-ngx](https://github.com/paperless-ngx/paperless-ngx/))
 - [`portfolio-website`](./apps/portfolio-website/) - My personal website ([Nasus20202/portfolio-website](https://github.com/nasus20202/portfolio-website))

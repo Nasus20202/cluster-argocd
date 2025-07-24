@@ -24,7 +24,7 @@ spec:
               mountPath: "/data"
       containers:
         - name: web
-          image: ghcr.io/maybe-finance/maybe:0.5.0
+          image: ghcr.io/maybe-finance/maybe:0.6.0
           ports:
             - containerPort: 3000
               name: http
@@ -69,7 +69,7 @@ spec:
     spec:
       containers:
         - name: worker
-          image: ghcr.io/maybe-finance/maybe:0.5.0
+          image: ghcr.io/maybe-finance/maybe:0.6.0
           command: ["bundle", "exec", "sidekiq"]
           resources:
             requests:

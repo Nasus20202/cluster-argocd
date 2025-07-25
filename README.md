@@ -29,7 +29,6 @@ kubeseal -f secret.yaml -w sealedsecret.yaml --controller-namespace sealed-secre
 - [`convertx`](./apps/convertx/) - Online file converter ([C4illin/ConvertX](https://github.com/C4illin/ConvertX))
 - [`harbor`](./apps/harbor/) - Container image registry ([goharbor/harbor](https://github.com/goharbor/harbor))
 - [`immich`](./apps/immich/) - Self hosted photo and video management ([immich-app/immich](https://github.com/immich-app/immich))
-- [`maybe-finance`](./apps/maybe-finance/) - Personal finance management ([maybe-finance/maybe](https://github.com/maybe-finance/maybe))
 - [`memos`](./apps/memos/) - Self hosted note-taking platform ([usememos/memos](https://github.com/usememos/memos))
 - [`nextcloud`](./apps/nextcloud/) - Self hosted cloud storage ([nextcloud/helm](https://github.com/nextcloud/helm))
 - [`paczka`](./apps/paczka/) - Helpful resources hosted with FileBrowser Quantum ([gtsteffaniak/filebrowser](https://github.com/gtsteffaniak/filebrowser))

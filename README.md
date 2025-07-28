@@ -26,6 +26,7 @@ kubeseal -f secret.yaml -w sealedsecret.yaml --controller-namespace sealed-secre
   - [`ralphkaminski`](./apps/bots/ralphkaminski/) - Bot singing every hour ([Nasus20202/RalphKaminski](https://github.com/Nasus20202/RalphKaminski))
   - [`vodka`](./apps/bots/vodka/) - Lecture list bot ([Nasus20202/Vodka](https://github.com/nasus20202/Vodka))
 - [`change-detection`](./apps/change-detection/) - Automated website change detector ([dgtlmoon/changedetection.io](https://github.com/dgtlmoon/changedetection.io))
+- [`cloudnative-pg`](./apps/cloudnative-pg/) - PostgreSQL operator ([cloudnative-pg/cloudnative-pg](https://github.com/cloudnative-pg/cloudnative-pg))
 - [`convertx`](./apps/convertx/) - Online file converter ([C4illin/ConvertX](https://github.com/C4illin/ConvertX))
 - [`immich`](./apps/immich/) - Self hosted photo and video management ([immich-app/immich](https://github.com/immich-app/immich))
 - [`memos`](./apps/memos/) - Self hosted note-taking platform ([usememos/memos](https://github.com/usememos/memos))

@@ -33,7 +33,8 @@ spec:
               port: http
           resources:
             requests:
-              memory: 250Mi
+              memory: 200Mi
+              cpu: 20m
           volumeMounts:
             - name: change-detection-data
               mountPath: /datastore
@@ -80,4 +81,5 @@ spec:
                 - http://localhost
           resources:
             requests:
-              memory: 200Mi
+              cpu: 80m
+              memory: 350Mi

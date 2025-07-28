@@ -1,0 +1,41 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: immich-postgres
+spec:
+  instances: 1
+  imageName: ghcr.io/tensorchord/cloudnative-vectorchord:17.5-0.4.3
+  primaryUpdateStrategy: unsupervised
+  storage:
+    size: 2.5Gi
+  resources:
+    requests:
+      memory: 150Mi
+  bootstrap:
+    initdb:
+      import:
+        type: monolith
+        databases: ["immich"]
+        source:
+          externalCluster: immich-db
+      database: immich
+      owner: immich
+      secret:
+        name: pg-immich
+      postInitSQL:
+        - CREATE EXTENSION IF NOT EXISTS "vchord" CASCADE;
+        - CREATE EXTENSION IF NOT EXISTS "earthdistance" CASCADE;
+  postgresql:
+    shared_preload_libraries:
+      - "vchord.so"
+  externalClusters:
+    - name: immich-db
+      connectionParameters:
+        host: immich-db
+        user: immich
+        dbname: postgres
+      password:
+        name: immich-db-secret
+        key: DB_PASSWORD
+  monitoring:
+    enablePodMonitor: true

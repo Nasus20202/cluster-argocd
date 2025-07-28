@@ -22,7 +22,8 @@ spec:
               containerPort: 80
           resources:
             requests:
-              memory: 200Mi
+              cpu: 10m
+              memory: 100Mi
           readinessProbe:
             httpGet:
               path: /health

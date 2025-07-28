@@ -24,6 +24,7 @@ cronjob:
 
 resources:
   requests:
+    cpu: 10m
     memory: 250Mi
 
 ingress:

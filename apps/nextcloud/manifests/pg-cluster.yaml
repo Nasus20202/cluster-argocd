@@ -9,7 +9,8 @@ spec:
     size: 1Gi
   resources:
     requests:
-      memory: 100Mi
+      cpu: 20m
+      memory: 125Mi
   bootstrap:
     initdb:
       import:

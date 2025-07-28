@@ -36,6 +36,7 @@ spec:
               port: http
           resources:
             requests:
+              cpu: 50m
               memory: 750Mi
       volumes:
         - name: data
@@ -91,6 +92,7 @@ spec:
               port: http
           resources:
             requests:
+              cpu: 10m
               memory: 250Mi
 ---
 apiVersion: apps/v1
@@ -126,4 +128,5 @@ spec:
                   key: DISABLE_SIGNUP
           resources:
             requests:
-              memory: 100Mi
+              cpu: 10m
+              memory: 125Mi

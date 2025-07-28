@@ -1,0 +1,31 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: rybbit-postgres
+spec:
+  instances: 1
+  primaryUpdateStrategy: unsupervised
+  storage:
+    size: 1Gi
+  bootstrap:
+    initdb:
+      import:
+        type: monolith
+        databases: ["rybbit"]
+        source:
+          externalCluster: bitnami-pg
+      database: rybbit
+      owner: rybbit
+      secret:
+        name: pg-rybbit
+  externalClusters:
+    - name: bitnami-pg
+      connectionParameters:
+        host: postgres-postgresql.postgres
+        user: postgres
+        dbname: postgres
+      password:
+        name: bitnami-pg-secret
+        key: password
+  monitoring:
+    enablePodMonitor: true

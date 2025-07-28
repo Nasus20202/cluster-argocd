@@ -24,7 +24,8 @@ spec:
                 name: vodka-secret
           resources:
             requests:
-              memory: "50Mi"
+              memory: 50Mi
+              cpu: 10m
           volumeMounts:
             - name: vodka-data
               mountPath: "/app/data"

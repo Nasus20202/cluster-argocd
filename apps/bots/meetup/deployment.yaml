@@ -33,7 +33,8 @@ spec:
                 name: meetup-secret
           resources:
             requests:
-              memory: "150Mi"
+              memory: 150Mi
+              cpu: 10m
           volumeMounts:
             - name: meetup-data
               mountPath: "/db"

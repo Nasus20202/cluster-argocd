@@ -20,4 +20,5 @@ spec:
                 name: leaguebot-secret
           resources:
             requests:
-              memory: "50Mi"
+              cpu: 10m
+              memory: 50Mi

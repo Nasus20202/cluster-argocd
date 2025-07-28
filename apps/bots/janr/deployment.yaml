@@ -22,6 +22,7 @@ spec:
                 name: janr-secret
           resources:
             requests:
-              memory: "50Mi"
+              memory: 50Mi
+              cpu: 10m
       imagePullSecrets:
         - name: janr-registry-secret

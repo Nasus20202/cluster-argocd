@@ -20,4 +20,5 @@ spec:
                 name: logenz-secret
           resources:
             requests:
-              memory: "75Mi"
+              memory: 50Mi
+              cpu: 10m

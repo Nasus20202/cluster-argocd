@@ -29,6 +29,7 @@ spec:
               port: http
           resources:
             requests:
+              cpu: 10m
               memory: 250Mi
           volumeMounts:
             - name: database

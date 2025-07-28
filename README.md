@@ -35,7 +35,6 @@ kubeseal -f secret.yaml -w sealedsecret.yaml --controller-namespace sealed-secre
 - [`palmr`](./apps/palmr/) - self-hosted file sharing platform ([kyantech/Palmr](https://github.com/kyantech/Palmr))
 - [`paperless-ngx`](./apps/paperless-ngx/) - Document management system ([paperless-ngx/paperless-ngx](https://github.com/paperless-ngx/paperless-ngx/))
 - [`portfolio-website`](./apps/portfolio-website/) - My personal website ([Nasus20202/portfolio-website](https://github.com/nasus20202/portfolio-website))
-- [`postgres`](./apps/postgres/) - PostgreSQL database ([bitnami/postgresql](https://github.com/bitnami/charts/tree/main/bitnami/postgresql))
 - [`rybbit`](./apps/rybbit/) - Self hosted analytics platform ([rybbit-io/rybbit](https://github.com/rybbit-io/rybbit))
 - [`sealed-secrets`](./apps/sealed-secrets/) - Kubernetes controller to manage sealed secrets ([bitnami/sealed-secrets](https://github.com/bitnami-labs/sealed-secrets))
 - [`shlink`](./apps/shlink/) - URL shortener ([shlinkio/shlink](https://github.com/shlinkio/shlink))

@@ -15,11 +15,25 @@ spec:
       containers:
         - name: shlink
           image: shlinkio/shlink:4.5.0
+          env:
+            - name: INITIAL_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: shlink-api-key
+                  key: apiKey
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: pg-shlink
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pg-shlink
+                  key: password
           envFrom:
             - configMapRef:
                 name: shlink-cm
-            - secretRef:
-                name: shlink-secret
           ports:
             - name: http
               containerPort: 8080
@@ -56,8 +70,8 @@ spec:
             - name: SHLINK_SERVER_API_KEY
               valueFrom:
                 secretKeyRef:
-                  name: shlink-secret
-                  key: INITIAL_API_KEY
+                  name: shlink-api-key
+                  key: apiKey
           ports:
             - name: http
               containerPort: 8080

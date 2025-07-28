@@ -7,5 +7,5 @@ data:
   IS_HTTPS_ENABLED: "true"
   DB_DRIVER: postgres
   DB_NAME: shlink
-  DB_HOST: postgres-postgresql.postgres
+  DB_HOST: shlink-postgres-rw
   MEMORY_LIMIT: 200M

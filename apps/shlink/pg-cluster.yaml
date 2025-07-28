@@ -1,0 +1,34 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: shlink-postgres
+spec:
+  instances: 1
+  primaryUpdateStrategy: unsupervised
+  storage:
+    size: 1Gi
+  resources:
+    requests:
+      memory: 100Mi
+  bootstrap:
+    initdb:
+      import:
+        type: monolith
+        databases: ["shlink"]
+        source:
+          externalCluster: bitnami-pg
+      database: shlink
+      owner: shlink
+      secret:
+        name: pg-shlink
+  externalClusters:
+    - name: bitnami-pg
+      connectionParameters:
+        host: postgres-postgresql.postgres
+        user: postgres
+        dbname: postgres
+      password:
+        name: bitnami-pg-secret
+        key: password
+  monitoring:
+    enablePodMonitor: true

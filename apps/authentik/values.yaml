@@ -1,6 +1,6 @@
 authentik:
   postgresql:
-    host: postgres-postgresql.postgres
+    host: authentik-postgres-rw
     name: authentik
     user: authentik
   email:
@@ -11,11 +11,15 @@ authentik:
     from: "Nasus SSO <sso@nasus.dev>"
 
 server:
+  env:
+    - name: AUTHENTIK_POSTGRESQL__PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: pg-authentik
+          key: password
   envFrom:
     - secretRef:
         name: authentik-secret-key
-    - secretRef:
-        name: authentik-db-secret
     - secretRef:
         name: authentik-smtp-secret
   ingress:
@@ -40,11 +44,15 @@ server:
       cpu: 25m
 
 worker:
+  env:
+    - name: AUTHENTIK_POSTGRESQL__PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: pg-authentik
+          key: password
   envFrom:
     - secretRef:
         name: authentik-secret-key
-    - secretRef:
-        name: authentik-db-secret
     - secretRef:
         name: authentik-smtp-secret
   resources:

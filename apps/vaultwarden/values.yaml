@@ -37,4 +37,5 @@ smtp:
 
 resources:
   requests:
-    memory: 100Mi
+    cpu: 10m
+    memory: 50Mi

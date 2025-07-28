@@ -41,7 +41,7 @@ server:
   resources:
     requests:
       memory: 750Mi
-      cpu: 25m
+      cpu: 75m
 
 worker:
   env:
@@ -58,7 +58,7 @@ worker:
   resources:
     requests:
       memory: 500Mi
-      cpu: 50m
+      cpu: 75m
 
 redis:
   enabled: true
@@ -68,5 +68,5 @@ redis:
       enabled: false
     resources:
       requests:
-        memory: 50Mi
+        memory: 30Mi
         cpu: 25m

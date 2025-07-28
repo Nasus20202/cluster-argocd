@@ -53,6 +53,12 @@ spec:
           ports:
             - containerPort: 8000
               name: http
+          env:
+            - name: PAPERLESS_DBPASS
+              valueFrom:
+                secretKeyRef:
+                  name: pg-paperless
+                  key: password
           envFrom:
             - configMapRef:
                 name: paperless-ngx-config

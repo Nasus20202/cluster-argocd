@@ -4,7 +4,7 @@ metadata:
   name: paperless-ngx-config
 data:
   PAPERLESS_REDIS: redis://paperless-ngx-valkey:6379
-  PAPERLESS_DBHOST: postgres-postgresql.postgres
+  PAPERLESS_DBHOST: paperless-postgres-rw
   PAPERLESS_DBNAME: paperless
   PAPERLESS_DBUSER: paperless
   PAPERLESS_URL: https://paperless.nasus.dev

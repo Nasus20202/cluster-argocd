@@ -1,3 +1,4 @@
 resources:
   requests:
-    memory: 50Mi
+    cpu: 10m
+    memory: 80Mi

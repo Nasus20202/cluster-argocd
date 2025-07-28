@@ -29,4 +29,5 @@ spec:
             initialDelaySeconds: 180
           resources:
             requests:
+              cpu: 10m
               memory: 500Mi

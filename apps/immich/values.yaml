@@ -25,6 +25,7 @@ server:
           secretName: immich-tls
   resources:
     requests:
+      cpu: 25m
       memory: 500Mi
 
 redis:
@@ -35,12 +36,16 @@ redis:
       enabled: false
     resources:
       requests:
-        memory: 50Mi
+        cpu: 25m
+        memory: 25Mi
 
 machine-learning:
   resources:
     requests:
+      cpu: 10m
       memory: 250Mi
+    limits:
+      cpu: 500m
 
 env:
   DB_HOSTNAME: immich-db

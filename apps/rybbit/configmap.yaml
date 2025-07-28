@@ -45,7 +45,7 @@ metadata:
 data:
   NODE_ENV: production
   CLICKHOUSE_HOST: http://clickhouse:8123
-  POSTGRES_HOST: postgres-postgresql.postgres
+  POSTGRES_HOST: rybbit-postgres-rw
   POSTGRES_PORT: "5432"
   BASE_URL: https://rybbit.nasus.dev
   DISABLE_SIGNUP: "true"

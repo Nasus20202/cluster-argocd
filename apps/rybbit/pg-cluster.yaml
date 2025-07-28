@@ -7,6 +7,9 @@ spec:
   primaryUpdateStrategy: unsupervised
   storage:
     size: 1Gi
+  resources:
+    requests:
+      memory: 100Mi
   bootstrap:
     initdb:
       import:

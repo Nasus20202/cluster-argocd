@@ -13,23 +13,9 @@ spec:
       memory: 125Mi
   bootstrap:
     initdb:
-      import:
-        type: monolith
-        databases: ["paperless"]
-        source:
-          externalCluster: bitnami-pg
       database: paperless
       owner: paperless
       secret:
         name: pg-paperless
-  externalClusters:
-    - name: bitnami-pg
-      connectionParameters:
-        host: postgres-postgresql.postgres
-        user: postgres
-        dbname: postgres
-      password:
-        name: bitnami-pg-secret
-        key: password
   monitoring:
     enablePodMonitor: true

@@ -14,11 +14,6 @@ spec:
       memory: 200Mi
   bootstrap:
     initdb:
-      import:
-        type: monolith
-        databases: ["immich"]
-        source:
-          externalCluster: immich-db
       database: immich
       owner: immich
       secret:
@@ -29,14 +24,5 @@ spec:
   postgresql:
     shared_preload_libraries:
       - "vchord.so"
-  externalClusters:
-    - name: immich-db
-      connectionParameters:
-        host: immich-db
-        user: immich
-        dbname: postgres
-      password:
-        name: immich-db-secret
-        key: DB_PASSWORD
   monitoring:
     enablePodMonitor: true

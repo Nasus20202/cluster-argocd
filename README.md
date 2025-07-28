@@ -32,7 +32,6 @@ kubeseal -f secret.yaml -w sealedsecret.yaml --controller-namespace sealed-secre
 - [`memos`](./apps/memos/) - Self hosted note-taking platform ([usememos/memos](https://github.com/usememos/memos))
 - [`nextcloud`](./apps/nextcloud/) - Self hosted cloud storage ([nextcloud/helm](https://github.com/nextcloud/helm))
 - [`paczka`](./apps/paczka/) - Helpful resources hosted with FileBrowser Quantum ([gtsteffaniak/filebrowser](https://github.com/gtsteffaniak/filebrowser))
-- [`palmr`](./apps/palmr/) - self-hosted file sharing platform ([kyantech/Palmr](https://github.com/kyantech/Palmr))
 - [`paperless-ngx`](./apps/paperless-ngx/) - Document management system ([paperless-ngx/paperless-ngx](https://github.com/paperless-ngx/paperless-ngx/))
 - [`portfolio-website`](./apps/portfolio-website/) - My personal website ([Nasus20202/portfolio-website](https://github.com/nasus20202/portfolio-website))
 - [`rybbit`](./apps/rybbit/) - Self hosted analytics platform ([rybbit-io/rybbit](https://github.com/rybbit-io/rybbit))

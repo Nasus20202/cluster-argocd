@@ -19,7 +19,6 @@ kubeseal -f secret.yaml -w sealedsecret.yaml --controller-namespace sealed-secre
 ### Applications
 
 - [`authentik`](./apps/authentik/) - Open source identity provider ([goauthentik/authentik](https://github.com/goauthentik/authentik))
-- [`backrest`](./apps/backrest/) - WebUI for backup tool restic ([garethgeorge/backrest](https://github.com/garethgeorge/backrest))
 - [`bots`](./apps/bots/) - Discord bots
   - [`janr`](./apps/bots/janr/) - Funny bot ([Nasus20202/JanR](https://github.com/Nasus20202/JanR/))
   - [`leaguebot`](./apps/bots/leaguebot/) - League of Legends bot ([Nasus20202/lolbot](https://github.com/Nasus20202/lolbot))

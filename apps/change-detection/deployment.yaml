@@ -59,7 +59,7 @@ spec:
     spec:
       containers:
         - name: browser-sockpuppet-chrome
-          image: dgtlmoon/sockpuppetbrowser:0.0.2
+          image: dgtlmoon/sockpuppetbrowser:0.0.3
           ports:
             - name: playwright
               containerPort: 3000

@@ -1,6 +1,6 @@
 image:
   repository: immich-app/immich-server
-  tag: v1.139.3
+  tag: v1.139.4
   registry: ghcr.io
 
 immich:

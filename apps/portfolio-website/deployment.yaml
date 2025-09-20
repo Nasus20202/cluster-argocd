@@ -18,6 +18,10 @@ spec:
           ports:
             - name: http
               containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
           resources:
             requests:
               cpu: 10m

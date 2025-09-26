@@ -39,3 +39,9 @@ ingress:
     - secretName: nextcloud-tls
       hosts:
         - cloud.nasus.dev
+
+startupProbe: # For automated upgrades
+  enabled: true
+  periodSeconds: 5
+  timeoutSeconds: 5
+  failureThreshold: 100

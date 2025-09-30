@@ -23,7 +23,7 @@ spec:
           resources:
             requests:
               memory: 500Mi
-              cpu: 30m
+              cpu: 100m
           readinessProbe:
             exec:
               command:

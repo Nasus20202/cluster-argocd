@@ -12,6 +12,8 @@ spec:
     requests:
       cpu: 20m
       memory: 200Mi
+    limits:
+      memory: 400Mi
   bootstrap:
     initdb:
       database: immich

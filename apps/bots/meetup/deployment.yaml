@@ -35,6 +35,8 @@ spec:
             requests:
               memory: 150Mi
               cpu: 10m
+            limits:
+              memory: 300Mi
           volumeMounts:
             - name: meetup-data
               mountPath: "/db"

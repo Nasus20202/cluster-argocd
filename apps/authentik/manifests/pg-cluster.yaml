@@ -11,6 +11,8 @@ spec:
     requests:
       cpu: 25m
       memory: 125Mi
+    limits:
+      memory: 250Mi
   bootstrap:
     initdb:
       database: authentik

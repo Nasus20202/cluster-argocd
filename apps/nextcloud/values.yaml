@@ -26,6 +26,8 @@ resources:
   requests:
     cpu: 10m
     memory: 250Mi
+  limits:
+    memory: 500Mi
 
 ingress:
   enabled: true

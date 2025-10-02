@@ -22,8 +22,11 @@ spec:
               containerPort: 3001
           resources:
             requests:
-              memory: 500Mi
               cpu: 100m
+              memory: 500Mi
+            limits:
+              cpu: 250m
+              memory: 1Gi
           readinessProbe:
             exec:
               command:

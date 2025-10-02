@@ -37,7 +37,9 @@ spec:
           resources:
             requests:
               cpu: 50m
-              memory: 750Mi
+              memory: 500Mi
+            limits:
+              memory: 1Gi
       volumes:
         - name: data
           persistentVolumeClaim:
@@ -94,6 +96,8 @@ spec:
             requests:
               cpu: 10m
               memory: 250Mi
+            limits:
+              memory: 500Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -130,3 +134,5 @@ spec:
             requests:
               cpu: 10m
               memory: 125Mi
+            limits:
+              memory: 250Mi

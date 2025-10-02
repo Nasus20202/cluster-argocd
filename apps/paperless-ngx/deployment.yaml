@@ -20,8 +20,10 @@ spec:
               name: valkey
           resources:
             requests:
-              memory: 15Mi
               cpu: 10m
+              memory: 15Mi
+            limits:
+              memory: 30Mi
           readinessProbe:
             tcpSocket:
               port: valkey
@@ -71,6 +73,8 @@ spec:
             requests:
               cpu: 10m
               memory: 600Mi
+            limits:
+              memory: 1Gi
           readinessProbe:
             httpGet:
               path: /
@@ -119,6 +123,8 @@ spec:
             requests:
               cpu: 10m
               memory: 200Mi
+            limits:
+              memory: 500Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -154,3 +160,5 @@ spec:
             requests:
               cpu: 10m
               memory: 50Mi
+            limits:
+              memory: 500Mi

@@ -30,18 +30,17 @@ server:
     limits:
       memory: 1Gi
 
-redis:
+valkey:
   enabled: true
-  master:
-    kind: Deployment
-    persistence:
+  persistence:
+    data:
       enabled: false
-    resources:
-      requests:
-        cpu: 25m
-        memory: 25Mi
-      limits:
-        memory: 50Mi
+  resources:
+    requests:
+      cpu: 25m
+      memory: 25Mi
+    limits:
+      memory: 50Mi
 
 machine-learning:
   resources:

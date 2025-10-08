@@ -78,8 +78,14 @@ get_app_namespace() {
 # Function to check if app uses Helm charts
 is_helm_app() {
     local app_file="$1"
+    # Check for .chart field (traditional Helm chart from repository)
     local chart_exists=$(yq eval '.spec.sources[]? | select(.chart != null) | .chart' "$app_file" 2>/dev/null || echo "")
-    [[ -n "$chart_exists" ]]
+    if [[ -n "$chart_exists" ]]; then
+        return 0
+    fi
+    # Check for .helm field (Helm chart from git repository)
+    local helm_exists=$(yq eval '.spec.sources[]? | select(.helm != null) | .helm' "$app_file" 2>/dev/null || echo "")
+    [[ -n "$helm_exists" ]]
 }
 
 # Function to check if app uses multiple sources
@@ -107,6 +113,14 @@ build_helm_app() {
     local chart_version=$(yq eval '.spec.sources[] | select(.chart != null) | .targetRevision' "$app_file")
     local chart_repo=$(yq eval '.spec.sources[] | select(.chart != null) | .repoURL' "$app_file")
     
+    # If no chart field, check for helm field (GitHub repo with Helm chart)
+    if [[ -z "$chart_name" ]]; then
+        chart_repo=$(yq eval '.spec.sources[] | select(.helm != null) | .repoURL' "$app_file")
+        chart_version=$(yq eval '.spec.sources[] | select(.helm != null) | .targetRevision' "$app_file")
+        local chart_path_in_repo=$(yq eval '.spec.sources[] | select(.helm != null) | .path' "$app_file")
+        chart_name=$(basename "$chart_path_in_repo")
+    fi
+    
     # Find values file
     local values_file="${APPS_DIR}/${app_name}/values.yaml"
     
@@ -119,29 +133,107 @@ build_helm_app() {
     local output_dir="${MANIFESTS_DIR}/${namespace}"
     mkdir -p "$output_dir"
     
-    # Add Helm repo if not already added
-    local repo_name=$(echo "$chart_repo" | sed 's|https://||' | sed 's|registry-1.docker.io/||' | sed 's|/|-|g' | sed 's|\.|-|g')
+    # Handle different types of chart repositories
+    local helm_cmd
     
-    # Handle special case for OCI registries
-    if [[ "$chart_repo" == *"registry-1.docker.io"* || "$chart_repo" == *"docker.io"* || "$chart_repo" == *"ghcr.io"* || "$chart_repo" == *"quay.io"* ]]; then
-        # For OCI registries, we need to use the full URL format
+    if [[ "$chart_repo" == *"github.com"* ]]; then
+        # Handle GitHub repositories containing Helm charts
+        log_info "Detected GitHub repository: $chart_repo"
+        
+        # Create temporary directory for cloning
+        local temp_dir=$(mktemp -d)
+        trap "rm -rf $temp_dir" EXIT
+        
+        # Clone the repository
+        log_info "Cloning repository: $chart_repo"
+        if ! git clone --depth 1 --branch "$chart_version" "$chart_repo" "$temp_dir" 2>/dev/null; then
+            # Try cloning without branch if it fails (might be a tag or commit)
+            log_info "Branch clone failed, trying without branch specification..."
+            rm -rf "$temp_dir"
+            temp_dir=$(mktemp -d)
+            if ! git clone --depth 1 "$chart_repo" "$temp_dir"; then
+                log_error "Failed to clone repository: $chart_repo"
+                return 1
+            fi
+            
+            # Checkout specific version if it's not the default branch
+            if [[ "$chart_version" != "HEAD" && "$chart_version" != "main" && "$chart_version" != "master" ]]; then
+                cd "$temp_dir"
+                if ! git checkout "$chart_version" 2>/dev/null; then
+                    log_warning "Could not checkout $chart_version, using default branch"
+                fi
+                cd - > /dev/null
+            fi
+        fi
+        
+        # Find the chart in the repository
+        local chart_path=""
+        if [[ -n "$chart_path_in_repo" && -f "$temp_dir/$chart_path_in_repo/Chart.yaml" ]]; then
+            # Chart path was specified in the app spec
+            chart_path="$temp_dir/$chart_path_in_repo"
+        elif [[ -f "$temp_dir/Chart.yaml" ]]; then
+            # Chart is in the root
+            chart_path="$temp_dir"
+        elif [[ -f "$temp_dir/charts/$chart_name/Chart.yaml" ]]; then
+            # Chart is in charts subdirectory
+            chart_path="$temp_dir/charts/$chart_name"
+        elif [[ -f "$temp_dir/$chart_name/Chart.yaml" ]]; then
+            # Chart is in a directory with the same name
+            chart_path="$temp_dir/$chart_name"
+        else
+            # Search for Chart.yaml files
+            local found_chart=$(find "$temp_dir" -name "Chart.yaml" -type f | head -1)
+            if [[ -n "$found_chart" ]]; then
+                chart_path=$(dirname "$found_chart")
+            else
+                log_error "Could not find Chart.yaml in repository: $chart_repo"
+                return 1
+            fi
+        fi
+        
+        log_info "Found chart at: $chart_path"
+        
+        # Build dependencies if Chart.yaml has dependencies
+        if [[ -f "$chart_path/Chart.yaml" ]]; then
+            if grep -q "dependencies:" "$chart_path/Chart.yaml"; then
+                log_info "Building chart dependencies..."
+                cd "$chart_path"
+                if ! helm dependency build 2>&1 | grep -v "^Hang tight"; then
+                    log_warning "Failed to build some dependencies, continuing anyway..."
+                fi
+                cd - > /dev/null
+            fi
+        fi
+        
+        # Build Helm template command for local chart
+        helm_cmd="helm template $app_name $chart_path --namespace $namespace --create-namespace"
+        
+    elif [[ "$chart_repo" == *"registry-1.docker.io"* || "$chart_repo" == *"docker.io"* || "$chart_repo" == *"ghcr.io"* || "$chart_repo" == *"quay.io"* ]]; then
+        # Handle OCI registries
         if [[ "$chart_repo" != oci://* ]]; then
             chart_repo="oci://${chart_repo}"
         fi
         log_info "Using OCI registry: $chart_repo"
-    else
-        helm repo add "$repo_name" "$chart_repo" 2>/dev/null || true
-        helm repo update > /dev/null 2>&1
-    fi
-    
-    # Build Helm template
-    local helm_cmd
-    if [[ "$chart_repo" == *"oci://"* ]]; then
         helm_cmd="helm template $app_name $chart_repo/$chart_name --version $chart_version --namespace $namespace --create-namespace"
+        
     else
+        # Handle traditional Helm repositories
+        local repo_name=$(echo "$chart_repo" | sed 's|https://||' | sed 's|/|-|g' | sed 's|\.|-|g')
+        
+        # Add Helm repo if not already added
+        if ! helm repo list | grep -q "^$repo_name"; then
+            log_info "Adding Helm repository: $repo_name ($chart_repo)"
+            if ! helm repo add "$repo_name" "$chart_repo" 2>/dev/null; then
+                log_error "Failed to add Helm repository: $chart_repo"
+                return 1
+            fi
+        fi
+        
+        helm repo update > /dev/null 2>&1
         helm_cmd="helm template $app_name $repo_name/$chart_name --version $chart_version --namespace $namespace --create-namespace"
     fi
     
+    # Add values file if present
     if [[ -n "$values_file" ]]; then
         helm_cmd="$helm_cmd --values $values_file"
     fi

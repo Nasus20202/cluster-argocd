@@ -32,9 +32,6 @@ server:
 
 valkey:
   enabled: true
-  persistence:
-    data:
-      enabled: false
   resources:
     requests:
       cpu: 25m

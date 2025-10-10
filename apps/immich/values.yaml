@@ -6,17 +6,6 @@ controllers:
           repository: immich-app/immich-server
           tag: v2.0.1
           registry: ghcr.io
-        env:
-          DB_HOSTNAME: immich-postgres-rw
-          DB_DATABASE_NAME: immich
-          DB_USERNAME:
-            secretKeyRef:
-              name: pg-immich
-              key: username
-          DB_PASSWORD:
-            secretKeyRef:
-              name: pg-immich
-              key: password
 
 immich:
   persistence:
@@ -38,27 +27,52 @@ server:
         - hosts:
             - immich.nasus.dev
           secretName: immich-tls
-  resources:
-    requests:
-      cpu: 25m
-      memory: 500Mi
-    limits:
-      memory: 1Gi
+  controllers:
+    main:
+      containers:
+        main:
+          env:
+            DB_HOSTNAME: immich-postgres-rw
+            DB_DATABASE_NAME: immich
+            DB_USERNAME:
+              secretKeyRef:
+                name: pg-immich
+                key: username
+            DB_PASSWORD:
+              secretKeyRef:
+                name: pg-immich
+                key: password
+          resources:
+            requests:
+              cpu: 25m
+              memory: 500Mi
+            limits:
+              cpu: 500m
+              memory: 1Gi
 
 valkey:
   enabled: true
-  resources:
-    requests:
-      cpu: 25m
-      memory: 25Mi
-    limits:
-      memory: 50Mi
+  controllers:
+    main:
+      containers:
+        main:
+          resources:
+            requests:
+              cpu: 25m
+              memory: 25Mi
+            limits:
+              cpu: 100m
+              memory: 50Mi
 
 machine-learning:
-  resources:
-    requests:
-      cpu: 10m
-      memory: 250Mi
-    limits:
-      cpu: 500m
-      memory: 2Gi
+  controllers:
+    main:
+      containers:
+        main:
+          resources:
+            requests:
+              cpu: 10m
+              memory: 250Mi
+            limits:
+              cpu: 500m
+              memory: 2Gi

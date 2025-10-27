@@ -47,7 +47,7 @@ server:
               cpu: 25m
               memory: 500Mi
             limits:
-              cpu: 500m
+              cpu: 250m
               memory: 1Gi
 
 valkey:
@@ -58,10 +58,10 @@ valkey:
         main:
           resources:
             requests:
-              cpu: 25m
+              cpu: 20m
               memory: 25Mi
             limits:
-              cpu: 100m
+              cpu: 50m
               memory: 50Mi
 
 machine-learning:
@@ -74,5 +74,5 @@ machine-learning:
               cpu: 10m
               memory: 250Mi
             limits:
-              cpu: 500m
+              cpu: 250m
               memory: 2Gi

@@ -13,24 +13,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
-      - name: Set up kubectl
-        uses: azure/setup-kubectl@v4
-
-      - name: Set up helm
-        uses: azure/setup-helm@v4
-
-      - name: Build all manifests
-        run: |
-          ./.github/workflows/scripts/build-local-manifests.sh
-
-      - name: Validate Kubernetes manifests
-        uses: docker://ghcr.io/yannh/kubeconform:latest
+      - name: Build and validate ArgoCD Manifests
+        uses: nasus20202/argocd-validate-action@main
         with:
-          entrypoint: "/kubeconform"
-          args: >-
-            -summary
-            -output pretty
-            -schema-location default
-            -schema-location https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json
-            -skip CustomResourceDefinition
-            ./manifests
+          apps-dir: "argocd-apps-root-app"
+          base-path: ""
+          skip-resources: "CustomResourceDefinition"

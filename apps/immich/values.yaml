@@ -18,7 +18,6 @@ server:
       enabled: true
       annotations:
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
-        nginx.ingress.kubernetes.io/proxy-body-size: "0"
       hosts:
         - host: immich.nasus.dev
           paths:

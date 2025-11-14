@@ -5,7 +5,7 @@ invitationOrgName: Nasus Vault
 ingress:
   enabled: true
   hostname: vault.nasus.dev
-  class: nginx
+  class: traefik
   additionalAnnotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
   tlsSecret: vaultwarden-tls

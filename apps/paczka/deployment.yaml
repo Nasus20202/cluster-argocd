@@ -36,6 +36,25 @@ spec:
             - name: config
               mountPath: /home/filebrowser/config.yaml
               subPath: config.yaml
+      initContainers:
+        - name: nginx
+          image: nginx:1.29.3-alpine
+          restartPolicy: Always
+          ports:
+            - name: http-nginx
+              containerPort: 8080
+          resources:
+            requests:
+              memory: 10Mi
+            limits:
+              memory: 20Mi
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http-nginx
+          volumeMounts:
+            - name: nginx-snippets
+              mountPath: /etc/nginx/conf.d
       volumes:
         - name: paczka
           persistentVolumeClaim:
@@ -43,3 +62,6 @@ spec:
         - name: config
           configMap:
             name: paczka-config
+        - name: nginx-snippets
+          configMap:
+            name: paczka-nginx-snippets

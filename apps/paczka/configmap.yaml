@@ -19,3 +19,20 @@ data:
       locale: pl
       disableSettings: true 
       lockPassword: true
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: paczka-nginx-snippets
+data:
+  default.conf: |
+    server {
+      listen 8080;
+      location / {
+        proxy_pass http://localhost:80;
+      }
+    }
+  rybbit-subfilter.conf: |
+    sub_filter '</head>' '<script src="https://rybbit.nasus.dev/api/script.js" data-site-id="3" defer></script></head>';
+    sub_filter_once on;
+    sub_filter_types text/html;

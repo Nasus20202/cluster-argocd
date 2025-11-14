@@ -28,3 +28,11 @@ spec:
               memory: 10Mi
             limits:
               memory: 10Mi
+          volumeMounts:
+            - name: nginx-snippets
+              mountPath: /etc/nginx/conf.d/rybbit-subfilter.conf
+              subPath: rybbit-subfilter.conf
+      volumes:
+        - name: nginx-snippets
+          configMap:
+            name: nginx-snippets

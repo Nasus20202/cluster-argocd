@@ -26,11 +26,17 @@ spec:
               memory: 500Mi
             limits:
               cpu: 250m
-              memory: 1.5Gi
+              memory: 750Mi
           readinessProbe:
             exec:
               command:
                 - extra/healthcheck
+            failureThreshold: 3
+          livenessProbe:
+            exec:
+              command:
+                - extra/healthcheck
+            failureThreshold: 30
           volumeMounts:
             - name: uptime-kuma-data
               mountPath: "/app/data"

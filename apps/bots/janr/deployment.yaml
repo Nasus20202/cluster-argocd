@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: janr
-          image: ghcr.io/nasus20202/janr:1.102.0
+          image: ghcr.io/nasus20202/janr:1.104.0
           envFrom:
             - configMapRef:
                 name: janr-cm
@@ -22,9 +22,9 @@ spec:
                 name: janr-secret
           resources:
             requests:
-              memory: 50Mi
+              memory: 100Mi
               cpu: 10m
             limits:
-              memory: 100Mi
+              memory: 200Mi
       imagePullSecrets:
         - name: janr-registry-secret

@@ -115,7 +115,7 @@ spec:
     spec:
       containers:
         - name: client
-          image: ghcr.io/rybbit-io/rybbit-client:v2.2.4
+          image: ghcr.io/rybbit-io/rybbit-client:v2.3.0
           ports:
             - name: http
               containerPort: 3002

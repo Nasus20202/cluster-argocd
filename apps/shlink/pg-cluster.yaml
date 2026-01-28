@@ -20,5 +20,3 @@ spec:
       owner: shlink
       secret:
         name: pg-shlink
-  monitoring:
-    enablePodMonitor: true

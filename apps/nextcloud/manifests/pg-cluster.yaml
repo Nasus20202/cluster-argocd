@@ -20,5 +20,3 @@ spec:
       owner: nextcloud
       secret:
         name: pg-nextcloud
-  monitoring:
-    enablePodMonitor: true

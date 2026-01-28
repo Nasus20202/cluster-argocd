@@ -20,5 +20,3 @@ spec:
       owner: rybbit
       secret:
         name: pg-rybbit
-  monitoring:
-    enablePodMonitor: true

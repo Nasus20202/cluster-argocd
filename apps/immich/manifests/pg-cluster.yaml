@@ -27,5 +27,3 @@ spec:
   postgresql:
     shared_preload_libraries:
       - "vchord.so"
-  monitoring:
-    enablePodMonitor: true

@@ -20,5 +20,3 @@ spec:
       owner: paperless
       secret:
         name: pg-paperless
-  monitoring:
-    enablePodMonitor: true

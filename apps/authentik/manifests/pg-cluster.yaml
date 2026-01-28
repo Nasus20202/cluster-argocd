@@ -20,5 +20,3 @@ spec:
       owner: authentik
       secret:
         name: pg-authentik
-  monitoring:
-    enablePodMonitor: true

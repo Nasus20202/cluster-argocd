@@ -4,7 +4,7 @@ metadata:
   name: rybbit-postgres
 spec:
   podMetricsEndpoints:
-  - port: metrics
+    - port: metrics
   selector:
     matchLabels:
       cnpg.io/cluster: rybbit-postgres

@@ -46,7 +46,7 @@ server:
               cpu: 25m
               memory: 500Mi
             limits:
-              cpu: 250m
+              cpu: 500m
               memory: 1Gi
 
 valkey:

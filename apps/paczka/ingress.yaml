@@ -7,7 +7,7 @@ metadata:
 spec:
   rules:
     - host: paczka.ftp.sh
-      http:
+      http: &http-rules
         paths:
           - path: /
             pathType: Prefix
@@ -16,7 +16,10 @@ spec:
                 name: paczka
                 port:
                   name: http-nginx
+    - host: paczka.nasus.dev
+      http: *http-rules
   tls:
     - hosts:
         - paczka.ftp.sh
+        - paczka.nasus.dev
       secretName: paczka-tls

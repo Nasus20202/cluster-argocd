@@ -64,7 +64,7 @@ spec:
     spec:
       containers:
         - name: shlink-web-client
-          image: shlinkio/shlink-web-client:4.6.2
+          image: shlinkio/shlink-web-client:4.7.0
           env:
             - name: SHLINK_SERVER_URL
               value: https://link.nasus.dev

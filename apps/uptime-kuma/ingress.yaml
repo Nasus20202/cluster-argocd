@@ -1,4 +1,4 @@
-# Disable ingress - it's managed by authenik
+# Disable ingress - it's managed by authentik
 # apiVersion: networking.k8s.io/v1
 # kind: Ingress
 # metadata:

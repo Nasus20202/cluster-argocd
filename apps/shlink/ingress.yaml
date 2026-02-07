@@ -24,7 +24,7 @@ spec:
         - link.nasus.dev
         - l.nasus.dev
       secretName: shlink-tls
-# Disable the web client ingress for now, as it will be managed by authenik
+# Disable the web client ingress for now, as it will be managed by authentik
 # ---
 # apiVersion: networking.k8s.io/v1
 # kind: Ingress

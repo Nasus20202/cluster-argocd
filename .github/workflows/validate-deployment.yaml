@@ -1,21 +1,33 @@
 name: Deployment validation
-run-name: Validate `${{ github.event.head_commit.message }}`
+run-name: Validate ${{ github.event.pull_request.title || github.event.head_commit.message || github.ref_name }}
 
 on:
   push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   validate-manifests:
-    name: Validate ${{ github.event.head_commit.message }}
+    name: Validate ${{ github.event.pull_request.title || github.event.head_commit.message || github.ref_name }}
 
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
 
       - name: Build and validate ArgoCD Manifests
-        uses: nasus20202/argocd-validate-action@main
+        uses: nasus20202/argocd-validate-action@v2
         with:
           apps-dir: "argocd-apps-root-app"
           base-path: ""
           skip-resources: "CustomResourceDefinition"
+          state-dir: ".argocd-state"
+          comment-on-pr: "true"
+          commit-state: ${{ github.event_name == 'push' }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}

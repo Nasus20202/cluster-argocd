@@ -20,6 +20,8 @@
   ],
   "platformAutomerge": false,
   "rebaseWhen": "conflicted",
+  "separateMultipleMinor": true,
+  "separateMultipleMajor": true,
   "packageRules": [
     {
       "matchUpdateTypes": [

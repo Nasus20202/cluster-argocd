@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ralphkaminski
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ralphkaminski
+  template:
+    metadata:
+      labels:
+        app: ralphkaminski
+    spec:
+      containers:
+        - name: ralphkaminski
+          image: ghcr.io/nasus20202/ralphkaminski:1.134.0
+          envFrom:
+            - configMapRef:
+                name: ralphkaminski-cm
+            - secretRef:
+                name: ralphkaminski-secret
+          resources:
+            requests:
+              memory: 300Mi
+              cpu: 10m
+            limits:
+              memory: 600Mi

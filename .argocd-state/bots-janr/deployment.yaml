@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: janr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: janr
+  template:
+    metadata:
+      labels:
+        app: janr
+    spec:
+      containers:
+        - name: janr
+          image: ghcr.io/nasus20202/janr:1.121.0
+          envFrom:
+            - configMapRef:
+                name: janr-cm
+            - secretRef:
+                name: janr-secret
+          resources:
+            requests:
+              memory: 100Mi
+              cpu: 10m
+            limits:
+              memory: 200Mi
+      imagePullSecrets:
+        - name: janr-registry-secret

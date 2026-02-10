@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: leaguebot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: leaguebot
+  template:
+    metadata:
+      labels:
+        app: leaguebot
+    spec:
+      containers:
+        - name: leaguebot
+          image: ghcr.io/nasus20202/lolbot:1.97.0
+          envFrom:
+            - secretRef:
+                name: leaguebot-secret
+          resources:
+            requests:
+              cpu: 10m
+              memory: 50Mi
+            limits:
+              memory: 100Mi

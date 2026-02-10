@@ -14,8 +14,9 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Build and validate ArgoCD Manifests
-        uses: nasus20202/argocd-validate-action@main
+        uses: nasus20202/argocd-validate-action@v2
         with:
           apps-dir: "argocd-apps-root-app"
           base-path: ""
           skip-resources: "CustomResourceDefinition"
+          state-dir: ".argocd-state"

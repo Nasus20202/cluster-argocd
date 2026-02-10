@@ -1,0 +1,119 @@
+---
+# Source: authentik/templates/worker/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authentik-worker
+  namespace: "authentik"
+  labels:
+    helm.sh/chart: "authentik-2025.12.3"
+    app.kubernetes.io/name: "authentik"
+    app.kubernetes.io/instance: "authentik"
+    app.kubernetes.io/component: "worker"
+    app.kubernetes.io/managed-by: "Helm"
+    app.kubernetes.io/part-of: "authentik"
+    app.kubernetes.io/version: "2025.12.3"
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: "authentik"
+      app.kubernetes.io/instance: "authentik"
+      app.kubernetes.io/component: "worker"
+  template:
+    metadata:
+      labels:
+        helm.sh/chart: "authentik-2025.12.3"
+        app.kubernetes.io/name: "authentik"
+        app.kubernetes.io/instance: "authentik"
+        app.kubernetes.io/component: "worker"
+        app.kubernetes.io/managed-by: "Helm"
+        app.kubernetes.io/part-of: "authentik"
+        app.kubernetes.io/version: "2025.12.3"
+      annotations:
+        checksum/secret: 9f5a0d30d00da514958bf101f21af6eabfb68eed996ed8ccc0a6db056c2d5386
+    spec:
+      serviceAccountName: authentik
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: worker
+          image: ghcr.io/goauthentik/server:2025.12.3
+          imagePullPolicy: IfNotPresent
+          args:
+            - worker
+          env:
+            - name: AUTHENTIK_POSTGRESQL__PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: pg-authentik
+            - name: AUTHENTIK_LISTEN__HTTP
+              value: "0.0.0.0:9000"
+            - name: AUTHENTIK_LISTEN__METRICS
+              value: "0.0.0.0:9300"
+          envFrom:
+            - secretRef:
+                name: authentik
+            - secretRef:
+                name: authentik-secret-key
+            - secretRef:
+                name: authentik-smtp-secret
+          ports:
+            - name: http
+              containerPort: 9000
+              protocol: TCP
+            - name: metrics
+              containerPort: 9300
+              protocol: TCP
+          livenessProbe:
+            
+            exec:
+              command:
+              - ak
+              - healthcheck
+            failureThreshold: 3
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 3
+          readinessProbe:
+            
+            exec:
+              command:
+              - ak
+              - healthcheck
+            failureThreshold: 3
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 3
+          startupProbe:
+            
+            exec:
+              command:
+              - ak
+              - healthcheck
+            failureThreshold: 60
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 3
+          resources:
+            limits:
+              memory: 1Gi
+            requests:
+              cpu: 75m
+              memory: 600Mi
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app.kubernetes.io/name: "authentik"
+                    app.kubernetes.io/instance: "authentik"
+                    app.kubernetes.io/component: "worker"
+                topologyKey: kubernetes.io/hostname
+      enableServiceLinks: true

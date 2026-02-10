@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shlink
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shlink
+  template:
+    metadata:
+      labels:
+        app: shlink
+    spec:
+      containers:
+        - name: shlink
+          image: shlinkio/shlink:5.0.0
+          env:
+            - name: INITIAL_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: shlink-api-key
+                  key: apiKey
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: pg-shlink
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pg-shlink
+                  key: password
+          envFrom:
+            - configMapRef:
+                name: shlink-cm
+          ports:
+            - name: http
+              containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /rest/health
+              port: http
+          resources:
+            requests:
+              cpu: 10m
+              memory: 150Mi
+            limits:
+              memory: 300Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shlink-web-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shlink-web-client
+  template:
+    metadata:
+      labels:
+        app: shlink-web-client
+    spec:
+      containers:
+        - name: shlink-web-client
+          image: shlinkio/shlink-web-client:4.7.0
+          env:
+            - name: SHLINK_SERVER_URL
+              value: https://link.nasus.dev
+            - name: SHLINK_SERVER_NAME
+              value: link.nasus.dev
+            - name: SHLINK_SERVER_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: shlink-api-key
+                  key: apiKey
+          ports:
+            - name: http
+              containerPort: 8080
+          resources:
+            requests:
+              memory: 10Mi
+            limits:
+              memory: 10Mi

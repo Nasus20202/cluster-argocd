@@ -1,0 +1,51 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: shlink
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  rules:
+    - host: link.nasus.dev
+      http: &http-rules
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: shlink
+                port:
+                  name: http
+    - host: l.nasus.dev
+      http: *http-rules
+
+  tls:
+    - hosts:
+        - link.nasus.dev
+        - l.nasus.dev
+      secretName: shlink-tls
+# Disable the web client ingress for now, as it will be managed by authentik
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: shlink-web-client
+#   annotations:
+#     cert-manager.io/cluster-issuer: "letsencrypt-prod"
+# spec:
+#   rules:
+#     - host: client.link.nasus.dev
+#       http:
+#         paths:
+#           - path: /
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: shlink-web-client
+#                 port:
+#                   name: http
+
+#   tls:
+#     - hosts:
+#         - shlink.nasus.dev
+#       secretName: shlink-web-client-tls

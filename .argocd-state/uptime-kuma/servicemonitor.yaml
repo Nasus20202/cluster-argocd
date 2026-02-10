@@ -1,0 +1,12 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: uptime-kuma
+spec:
+  selector:
+    matchLabels:
+      app: uptime-kuma
+  endpoints:
+    - port: http
+      interval: 30s
+      path: /metrics

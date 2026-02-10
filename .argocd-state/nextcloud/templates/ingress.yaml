@@ -1,0 +1,31 @@
+---
+# Source: nextcloud/templates/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nextcloud
+  labels:
+    app.kubernetes.io/name: nextcloud
+    app.kubernetes.io/instance: nextcloud
+    app.kubernetes.io/component: app
+    helm.sh/chart: nextcloud-8.9.0
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/version: "32.0.5"
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  rules:
+    - host: cloud.nasus.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nextcloud
+                port:
+                  number: 8080
+  tls:
+    - hosts:
+      - cloud.nasus.dev
+      secretName: nextcloud-tls

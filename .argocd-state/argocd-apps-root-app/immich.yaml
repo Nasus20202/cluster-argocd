@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: immich
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: apps
+  sources:
+    - repoURL: https://immich-app.github.io/immich-charts
+      chart: immich
+      targetRevision: "0.10.3"
+      helm:
+        valueFiles:
+          - $values/apps/immich/values.yaml
+    - repoURL: https://github.com/Nasus20202/cluster-argocd.git
+      targetRevision: main
+      ref: values
+    - repoURL: https://github.com/Nasus20202/cluster-argocd.git
+      targetRevision: main
+      path: apps/immich/manifests
+  destination:
+    name: in-cluster
+    namespace: immich
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: bots
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/Nasus20202/cluster-argocd.git
+        revision: main
+        directories:
+          - path: apps/bots/*
+  template:
+    metadata:
+      name: "bots-{{path.basename}}"
+      namespace: argocd
+      finalizers:
+        - resources-finalizer.argocd.argoproj.io
+    spec:
+      project: apps
+      source:
+        repoURL: https://github.com/Nasus20202/cluster-argocd.git
+        targetRevision: main
+        path: "{{path}}"
+      destination:
+        name: in-cluster
+        namespace: bots
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true

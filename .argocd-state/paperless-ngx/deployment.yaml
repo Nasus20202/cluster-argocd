@@ -1,0 +1,164 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paperless-ngx-valkey
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: paperless-ngx-valkey
+  template:
+    metadata:
+      labels:
+        app: paperless-ngx-valkey
+    spec:
+      containers:
+        - name: valkey
+          image: valkey/valkey:9.0.2-alpine
+          ports:
+            - containerPort: 6379
+              name: valkey
+          resources:
+            requests:
+              cpu: 10m
+              memory: 15Mi
+            limits:
+              memory: 30Mi
+          readinessProbe:
+            tcpSocket:
+              port: valkey
+          volumeMounts:
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: data
+          emptyDir: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paperless-ngx-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: paperless-ngx-server
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: paperless-ngx-server
+    spec:
+      containers:
+        - name: paperless-ngx
+          image: ghcr.io/paperless-ngx/paperless-ngx:2.20.6
+          ports:
+            - containerPort: 8000
+              name: http
+          env:
+            - name: PAPERLESS_DBPASS
+              valueFrom:
+                secretKeyRef:
+                  name: pg-paperless
+                  key: password
+          envFrom:
+            - configMapRef:
+                name: paperless-ngx-config
+            - secretRef:
+                name: paperless-ngx-secret
+            - secretRef:
+                name: paperless-ngx-oidc-config
+          resources:
+            requests:
+              cpu: 10m
+              memory: 600Mi
+            limits:
+              memory: 1Gi
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          volumeMounts:
+            - name: data
+              mountPath: /usr/src/paperless/data
+              subPath: data
+            - name: data
+              mountPath: /usr/src/paperless/media
+              subPath: media
+            - name: temporary
+              mountPath: /usr/src/paperless/export
+              subPath: export
+            - name: temporary
+              mountPath: /usr/src/paperless/consume
+              subPath: consume
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: paperless-ngx-pvc
+        - name: temporary
+          emptyDir: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paperless-ngx-tika
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: paperless-ngx-tika
+  template:
+    metadata:
+      labels:
+        app: paperless-ngx-tika
+    spec:
+      containers:
+        - name: tika
+          image: apache/tika:3.2.3.0
+          ports:
+            - containerPort: 9998
+              name: http
+          resources:
+            requests:
+              cpu: 10m
+              memory: 200Mi
+            limits:
+              memory: 500Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paperless-ngx-gotenberg
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: paperless-ngx-gotenberg
+  template:
+    metadata:
+      labels:
+        app: paperless-ngx-gotenberg
+    spec:
+      containers:
+        - name: gotenberg
+          image: gotenberg/gotenberg:8.26.0
+          command:
+            [
+              "gotenberg",
+              "--chromium-disable-javascript=true",
+              "--chromium-allow-list=file:///tmp/.*",
+            ]
+          ports:
+            - containerPort: 3000
+              name: http
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+          resources:
+            requests:
+              cpu: 10m
+              memory: 50Mi
+            limits:
+              memory: 500Mi

@@ -1,0 +1,22 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: paperless-postgres
+spec:
+  instances: 1
+  primaryUpdateStrategy: unsupervised
+  imageName: ghcr.io/cloudnative-pg/postgresql:18.1
+  storage:
+    size: 1Gi
+  resources:
+    requests:
+      cpu: 20m
+      memory: 125Mi
+    limits:
+      memory: 250Mi
+  bootstrap:
+    initdb:
+      database: paperless
+      owner: paperless
+      secret:
+        name: pg-paperless

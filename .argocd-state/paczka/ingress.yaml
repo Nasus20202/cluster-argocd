@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: paczka
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  rules:
+    - host: paczka.ftp.sh
+      http: &http-rules
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: paczka
+                port:
+                  name: http-nginx
+    - host: paczka.nasus.dev
+      http: *http-rules
+  tls:
+    - hosts:
+        - paczka.ftp.sh
+        - paczka.nasus.dev
+      secretName: paczka-tls

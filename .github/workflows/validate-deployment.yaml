@@ -25,5 +25,5 @@ jobs:
           skip-resources: "CustomResourceDefinition"
           state-dir: ".argocd-state"
           comment-on-pr: "true"
-          commit-state: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && 'true' || 'false' }}
+          commit-state: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
           github-token: ${{ secrets.GITHUB_TOKEN }}

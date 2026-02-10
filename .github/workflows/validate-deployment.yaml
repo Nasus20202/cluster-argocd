@@ -20,3 +20,5 @@ jobs:
           base-path: ""
           skip-resources: "CustomResourceDefinition"
           state-dir: ".argocd-state"
+          comment-on-pr: "true"
+          github-token: ${{ secrets.GITHUB_TOKEN }}

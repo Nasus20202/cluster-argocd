@@ -7,10 +7,10 @@ metadata:
   namespace: sealed-secrets
   labels:
     app.kubernetes.io/name: sealed-secrets
-    helm.sh/chart: sealed-secrets-2.18.0
+    helm.sh/chart: sealed-secrets-2.18.1
     app.kubernetes.io/instance: sealed-secrets
     app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/version: 0.34.0
+    app.kubernetes.io/version: 0.35.0
     app.kubernetes.io/part-of: sealed-secrets
 spec:
   type: ClusterIP
@@ -31,10 +31,10 @@ metadata:
   namespace: sealed-secrets
   labels:
     app.kubernetes.io/name: sealed-secrets
-    helm.sh/chart: sealed-secrets-2.18.0
+    helm.sh/chart: sealed-secrets-2.18.1
     app.kubernetes.io/instance: sealed-secrets
     app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/version: 0.34.0
+    app.kubernetes.io/version: 0.35.0
     app.kubernetes.io/part-of: sealed-secrets
     app.kubernetes.io/component: metrics
 spec:

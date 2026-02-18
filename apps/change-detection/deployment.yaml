@@ -1,0 +1,94 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: change-detection
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: change-detection
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: change-detection
+    spec:
+      containers:
+        - name: change-detection
+          image: ghcr.io/dgtlmoon/changedetection.io:0.53.4
+          env:
+            - name: TZ
+              value: "Europe/Warsaw"
+            - name: PLAYWRIGHT_DRIVER_URL
+              value: ws://browser-sockpuppet-chrome:3000
+            - name: BASE_URL
+              value: "http://change-detection.nasus.dev"
+          ports:
+            - name: http
+              containerPort: 5000
+          readinessProbe:
+            httpGet:
+              path: /worker-health
+              port: http
+          resources:
+            requests:
+              memory: 250Mi
+              cpu: 10m
+            limits:
+              memory: 500Mi
+          volumeMounts:
+            - name: change-detection-data
+              mountPath: /datastore
+      volumes:
+        - name: change-detection-data
+          persistentVolumeClaim:
+            claimName: change-detection-pvc
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: browser-sockpuppet-chrome
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: browser-sockpuppet-chrome
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: browser-sockpuppet-chrome
+    spec:
+      containers:
+        - name: browser-sockpuppet-chrome
+          image: dgtlmoon/sockpuppetbrowser:0.0.3
+          ports:
+            - name: playwright
+              containerPort: 3000
+          env:
+            - name: SCREEN_WIDTH
+              value: "1920"
+            - name: SCREEN_HEIGHT
+              value: "1024"
+            - name: SCREEN_DEPTH
+              value: "16"
+            - name: MAX_CONCURRENT_CHROME_PROCESSES
+              value: "3"
+          readinessProbe:
+            exec:
+              command:
+                - python3
+                - /usr/src/app/docker-health-check.py
+                - --host
+                - http://localhost
+            timeoutSeconds: 15
+            periodSeconds: 30
+          resources:
+            requests:
+              cpu: 10m
+              memory: 300Mi
+            limits:
+              cpu: 500m
+              memory: 600Mi

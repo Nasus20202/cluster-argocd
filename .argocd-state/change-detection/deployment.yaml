@@ -33,10 +33,10 @@ spec:
               port: http
           resources:
             requests:
-              memory: 250Mi
+              memory: 500Mi
               cpu: 10m
             limits:
-              memory: 500Mi
+              memory: 750Mi
           volumeMounts:
             - name: change-detection-data
               mountPath: /datastore
@@ -75,7 +75,7 @@ spec:
             - name: SCREEN_DEPTH
               value: "16"
             - name: MAX_CONCURRENT_CHROME_PROCESSES
-              value: "3"
+              value: "5"
           readinessProbe:
             exec:
               command:
@@ -88,7 +88,7 @@ spec:
           resources:
             requests:
               cpu: 10m
-              memory: 300Mi
+              memory: 250Mi
             limits:
               cpu: 500m
-              memory: 600Mi
+              memory: 500Mi

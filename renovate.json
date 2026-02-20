@@ -1,12 +1,8 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended"
-  ],
+  "extends": ["config:recommended"],
   "timezone": "Europe/Warsaw",
-  "labels": [
-    "version-update"
-  ],
+  "labels": ["version-update"],
   "dependencyDashboardTitle": "Version Updates Dashboard",
   "prConcurrentLimit": 0,
   "prHourlyLimit": 0,
@@ -15,37 +11,21 @@
   "dependencyDashboard": true,
   "automergeType": "pr",
   "automergeStrategy": "rebase",
-  "automergeSchedule": [
-    "* 0-7 * * *"
-  ],
+  "automergeSchedule": ["* 0-7 * * *"],
   "platformAutomerge": false,
   "rebaseWhen": "conflicted",
   "separateMultipleMinor": true,
   "separateMultipleMajor": true,
+  "additionalBranchPrefix": "{{packageFile}}/",
+  "commitMessageSuffix": "in {{packageFile}}",
   "packageRules": [
     {
-      "matchUpdateTypes": [
-        "patch",
-        "minor"
-      ],
+      "matchUpdateTypes": ["patch", "minor"],
       "automerge": true
     },
     {
-      "matchDatasources": [
-        "docker"
-      ],
+      "matchDatasources": ["docker"],
       "versioning": "docker"
-    },
-    {
-      "matchManagers": [
-        "custom.regex"
-      ],
-      "groupName": "CNPG PostgreSQL images",
-      "automerge": false,
-      "matchDepNames": [
-        "/ghcr.io/cloudnative-pg/postgresql/",
-        "/ghcr.io/tensorchord/cloudnative-vectorchord/"
-      ]
     }
   ],
   "kubernetes": {
@@ -55,22 +35,16 @@
     ]
   },
   "argocd": {
-    "managerFilePatterns": [
-      "/argocd-apps-root-app/.+\\.ya?ml$/"
-    ]
+    "managerFilePatterns": ["/argocd-apps-root-app/.+\\.ya?ml$/"]
   },
   "helm-values": {
-    "managerFilePatterns": [
-      "/apps/.+values\\.ya?ml$/"
-    ]
+    "managerFilePatterns": ["/apps/.+values\\.ya?ml$/"]
   },
   "customManagers": [
     {
       "description": "Upgrade cloudnative-pg PostgreSQL cluster images",
       "customType": "regex",
-      "managerFilePatterns": [
-        "/apps/.+\\.ya?ml$/"
-      ],
+      "managerFilePatterns": ["/apps/.+\\.ya?ml$/"],
       "matchStrings": [
         "imageName:\\s*(?<depName>[^\\s:]+):(?<currentValue>[\\w.-]+)"
       ],

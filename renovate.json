@@ -45,7 +45,8 @@
       "matchDepNames": [
         "/ghcr.io/cloudnative-pg/postgresql/",
         "/ghcr.io/tensorchord/cloudnative-vectorchord/"
-      ]
+      ],
+      "additionalBranchPrefix": "{{packageFileDir}}"
     }
   ],
   "kubernetes": {

@@ -23,10 +23,10 @@ spec:
             - name: PGUSER
               valueFrom:
                 secretKeyRef:
-                  name: immich-postgres-superuser
+                  name: pg-immich
                   key: username
             - name: PGPASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: immich-postgres-superuser
+                  name: pg-immich
                   key: password

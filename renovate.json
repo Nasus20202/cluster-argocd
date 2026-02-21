@@ -26,6 +26,10 @@
     {
       "matchDatasources": ["docker"],
       "versioning": "docker"
+    },
+    {
+      "matchPackageNames": ["ghcr.io/tensorchord/cloudnative-vectorchord"],
+      "versioning": "loose"
     }
   ],
   "kubernetes": {

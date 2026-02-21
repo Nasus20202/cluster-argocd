@@ -1,0 +1,32 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: vchord-update
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: vchord-update
+          image: alpine/psql:18.2
+          args:
+            - -c
+            - "ALTER EXTENSION vchord UPDATE;"
+          env:
+            - name: PGHOST
+              value: immich-postgres-rw
+            - name: PGDATABASE
+              value: immich
+            - name: PGUSER
+              valueFrom:
+                secretKeyRef:
+                  name: immich-postgres-superuser
+                  key: username
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: immich-postgres-superuser
+                  key: password

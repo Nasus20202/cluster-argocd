@@ -26,6 +26,9 @@ spec:
               memory: 300Mi
             limits:
               memory: 600Mi
+          env:
+            - name: FILEBROWSER_CONFIG
+              value: "/home/filebrowser/config.yaml"
           readinessProbe:
             httpGet:
               path: /health

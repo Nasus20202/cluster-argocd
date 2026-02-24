@@ -1,59 +1,12 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended"],
-  "timezone": "Europe/Warsaw",
-  "labels": ["version-update"],
-  "dependencyDashboardTitle": "Version Updates Dashboard",
-  "prConcurrentLimit": 0,
-  "prHourlyLimit": 0,
-  "commitMessagePrefix": "chore:",
-  "semanticCommits": "enabled",
-  "dependencyDashboard": true,
-  "automergeType": "pr",
-  "automergeStrategy": "rebase",
+  "extends": ["github>Nasus20202/argocd-renovate"],
   "automergeSchedule": ["* 0-7 * * *"],
-  "platformAutomerge": false,
-  "rebaseWhen": "conflicted",
-  "separateMultipleMinor": true,
-  "separateMultipleMajor": true,
-  "additionalBranchPrefix": "{{packageFile}}/",
-  "commitMessageSuffix": "in {{packageFile}}",
   "packageRules": [
-    {
-      "matchUpdateTypes": ["patch", "minor"],
-      "automerge": true
-    },
-    {
-      "matchDatasources": ["docker"],
-      "versioning": "docker"
-    },
     {
       "description": "Version format is {psql_major}.{psql_minor}-{ext_major}.{ext_minor}.{ext_patch} (e.g. 18.1-1.0.0). Regex maps: major=psql_major, minor=psql_minor, patch=ext_major, build=ext_minor, revision=ext_patch. This ensures both psql and extension versions are compared and bare tags (e.g. 18.2) are ignored.",
       "matchPackageNames": ["ghcr.io/tensorchord/cloudnative-vectorchord"],
       "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)-(?<patch>\\d+)\\.(?<build>\\d+)\\.(?<revision>\\d+)$"
-    }
-  ],
-  "kubernetes": {
-    "managerFilePatterns": [
-      "/apps/.+\\.ya?ml$/",
-      "/argocd-apps-root-app/.+\\.ya?ml$/"
-    ]
-  },
-  "argocd": {
-    "managerFilePatterns": ["/argocd-apps-root-app/.+\\.ya?ml$/"]
-  },
-  "helm-values": {
-    "managerFilePatterns": ["/apps/.+values\\.ya?ml$/"]
-  },
-  "customManagers": [
-    {
-      "description": "Upgrade cloudnative-pg PostgreSQL cluster images",
-      "customType": "regex",
-      "managerFilePatterns": ["/apps/.+\\.ya?ml$/"],
-      "matchStrings": [
-        "imageName:\\s*(?<depName>[^\\s:]+):(?<currentValue>[\\w.-]+)"
-      ],
-      "datasourceTemplate": "docker"
     }
   ]
 }

@@ -36,4 +36,5 @@ kubeseal -f secret.yaml -w sealedsecret.yaml --controller-namespace sealed-secre
 - [`sealed-secrets`](./apps/sealed-secrets/) - Kubernetes controller to manage sealed secrets ([bitnami/sealed-secrets](https://github.com/bitnami-labs/sealed-secrets))
 - [`shlink`](./apps/shlink/) - URL shortener ([shlinkio/shlink](https://github.com/shlinkio/shlink))
 - [`uptime-kuma`](./apps/uptime-kuma/) - Uptime monitor ([louislam/uptime-kuma](https://github.com/louislam/uptime-kuma))
+- [`qrnroll`](./apps/qrnroll/) - QR code enrollment service ([Nasus20202/qrnroll](https://github.com/Nasus20202/qrnroll))
 - [`vaultwarden`](./apps/vaultwarden/) - Self hosted password manager ([dani-garcia/vaultwarden](https://github.com/dani-garcia/vaultwarden))

@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qrnroll
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: qrnroll
+  template:
+    metadata:
+      labels:
+        app: qrnroll
+    spec:
+      containers:
+        - name: qrnroll
+          image: ghcr.io/nasus20202/qrnroll:1.11.0
+          ports:
+            - name: http
+              containerPort: 8080
+          envFrom:
+            - secretRef:
+                name: qrnroll-secret
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            requests:
+              cpu: 10m
+              memory: 100Mi
+            limits:
+              memory: 200Mi

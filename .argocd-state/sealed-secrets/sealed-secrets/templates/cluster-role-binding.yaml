@@ -6,10 +6,10 @@ metadata:
   name: sealed-secrets
   labels:
     app.kubernetes.io/name: sealed-secrets
-    helm.sh/chart: sealed-secrets-2.18.1
+    helm.sh/chart: sealed-secrets-2.18.3
     app.kubernetes.io/instance: sealed-secrets
     app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/version: 0.35.0
+    app.kubernetes.io/version: 0.36.0
     app.kubernetes.io/part-of: sealed-secrets
   annotations:
 roleRef:

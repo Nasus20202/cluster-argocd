@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: qrnroll
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  rules:
+    - host: qrnroll.nasus.dev
+      http: &http-rules
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: qrnroll
+                port:
+                  name: http
+    - host: qr.nasus.dev
+      http: *http-rules
+  tls:
+    - hosts:
+        - qrnroll.nasus.dev
+        - qr.nasus.dev
+      secretName: qrnroll-tls

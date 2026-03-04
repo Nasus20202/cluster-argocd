@@ -14,10 +14,13 @@ spec:
     spec:
       containers:
         - name: qrnroll
-          image: ghcr.io/nasus20202/qrnroll:1.61.0
+          image: ghcr.io/nasus20202/qrnroll:1.74.0
           ports:
             - name: http
               containerPort: 8080
+          env:
+            - name: TRACKING_SCRIPT
+              value: '<script src="https://rybbit.nasus.dev/api/script.js" data-site-id="5d0970295e63" defer></script>'
           envFrom:
             - secretRef:
                 name: qrnroll-secret
@@ -28,6 +31,6 @@ spec:
           resources:
             requests:
               cpu: 10m
-              memory: 100Mi
+              memory: 75Mi
             limits:
-              memory: 200Mi
+              memory: 150Mi

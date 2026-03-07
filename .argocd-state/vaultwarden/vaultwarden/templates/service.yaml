@@ -7,10 +7,10 @@ metadata:
   namespace: vaultwarden
   labels:
     app.kubernetes.io/component: vaultwarden
-    helm.sh/chart: vaultwarden-0.34.6
+    helm.sh/chart: vaultwarden-0.35.1
     app.kubernetes.io/name: vaultwarden
     app.kubernetes.io/instance: vaultwarden
-    app.kubernetes.io/version: "1.35.3"
+    app.kubernetes.io/version: "1.35.4"
     app.kubernetes.io/managed-by: Helm
 spec:
   type: "ClusterIP"

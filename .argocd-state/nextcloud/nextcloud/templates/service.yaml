@@ -8,16 +8,17 @@ metadata:
     app.kubernetes.io/name: nextcloud
     app.kubernetes.io/instance: nextcloud
     app.kubernetes.io/component: app
-    helm.sh/chart: nextcloud-8.9.1
+    helm.sh/chart: nextcloud-9.0.2
     app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/version: "32.0.6"
+    app.kubernetes.io/version: "33.0.0"
+    app.kubernetes.io/monitor: enabled
 spec:
   type: ClusterIP
   ports:
-    - port: 8080
+    - name: http
+      port: 8080
       targetPort: 80
       protocol: TCP
-      name: http
   selector:
     app.kubernetes.io/name: nextcloud
     app.kubernetes.io/instance: nextcloud

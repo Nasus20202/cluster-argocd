@@ -8,9 +8,9 @@ metadata:
     app.kubernetes.io/name: nextcloud
     app.kubernetes.io/instance: nextcloud
     app.kubernetes.io/component: app
-    helm.sh/chart: nextcloud-8.9.1
+    helm.sh/chart: nextcloud-9.0.2
     app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/version: "32.0.6"
+    app.kubernetes.io/version: "33.0.0"
 spec:
   replicas: 1
   strategy:
@@ -27,13 +27,13 @@ spec:
         app.kubernetes.io/instance: nextcloud
         app.kubernetes.io/component: app
       annotations:
-        nextcloud-config-hash: 8266a725d5474acb6adbf9f0609a3494dc3340a3ac306db90eac9ddb1b851960
+        nextcloud-config-hash: 0b89c666b7638c7519b5d103d2ca0b59edc38023dab829421ae53d3050f5f530
         php-config-hash: 44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a
         hooks-hash: 9525c2748a6c7cd0e28ec740623d0b3fa5a75c83b51ccfd136bc89c76737b204
     spec:
       containers:
         - name: nextcloud
-          image: docker.io/library/nextcloud:32.0.6-apache
+          image: docker.io/library/nextcloud:33.0.0-apache
           imagePullPolicy: IfNotPresent
           env:
             
@@ -63,6 +63,8 @@ spec:
                   key: nextcloud-password
             - name: NEXTCLOUD_TRUSTED_DOMAINS
               value: cloud.nasus.dev
+            - name: OPENMETRICS_ALLOWED_CLIENTS
+              value: "127.0.0.1,10.42.0.0/16,10.43.0.0/16"
             - name: NEXTCLOUD_DATA_DIR
               value: "/var/www/html/data"
             
@@ -137,7 +139,7 @@ spec:
             successThreshold: 1
             failureThreshold: 100
         - name: nextcloud-cron
-          image: docker.io/library/nextcloud:32.0.6-apache
+          image: docker.io/library/nextcloud:33.0.0-apache
           imagePullPolicy: IfNotPresent
           command:
             - /cron.sh
@@ -169,6 +171,8 @@ spec:
                   key: nextcloud-password
             - name: NEXTCLOUD_TRUSTED_DOMAINS
               value: cloud.nasus.dev
+            - name: OPENMETRICS_ALLOWED_CLIENTS
+              value: "127.0.0.1,10.42.0.0/16,10.43.0.0/16"
             - name: NEXTCLOUD_DATA_DIR
               value: "/var/www/html/data"
             

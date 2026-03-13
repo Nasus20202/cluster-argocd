@@ -7,10 +7,10 @@ metadata:
   namespace: sealed-secrets
   labels:
     app.kubernetes.io/name: sealed-secrets
-    helm.sh/chart: sealed-secrets-2.18.3
+    helm.sh/chart: sealed-secrets-2.18.4
     app.kubernetes.io/instance: sealed-secrets
     app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/version: 0.36.0
+    app.kubernetes.io/version: 0.36.1
     app.kubernetes.io/part-of: sealed-secrets
   annotations:
 spec:
@@ -40,7 +40,7 @@ spec:
             - :8080
             - --listen-metrics-addr
             - :8081
-          image: docker.io/bitnami/sealed-secrets-controller:0.36.0
+          image: docker.io/bitnami/sealed-secrets-controller:0.36.1
           imagePullPolicy: IfNotPresent
           env:
             - name: GOMEMLIMIT
@@ -51,8 +51,10 @@ spec:
           ports:
             - name: http
               containerPort: 8080
+              protocol: TCP
             - name: metrics
               containerPort: 8081
+              protocol: TCP
           livenessProbe:
             failureThreshold: 3
             initialDelaySeconds: 0

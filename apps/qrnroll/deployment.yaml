@@ -14,11 +14,13 @@ spec:
     spec:
       containers:
         - name: qrnroll
-          image: ghcr.io/nasus20202/qrnroll:1.176.0
+          image: ghcr.io/nasus20202/qrnroll:1.191.0
           ports:
             - name: http
               containerPort: 8080
           env:
+            - name: VALKEY_URL
+              value: "valkey://qrnroll-valkey:6379"
             - name: TRACKING_SCRIPT
               value: '<script src="https://rybbit.nasus.dev/api/script.js" data-site-id="5d0970295e63" defer></script>'
           envFrom:
@@ -34,3 +36,39 @@ spec:
               memory: 75Mi
             limits:
               memory: 150Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qrnroll-valkey
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: qrnroll-valkey
+  template:
+    metadata:
+      labels:
+        app: qrnroll-valkey
+    spec:
+      containers:
+        - name: valkey
+          image: valkey/valkey:9.0.3-alpine
+          ports:
+            - containerPort: 6379
+              name: valkey
+          resources:
+            requests:
+              cpu: 10m
+              memory: 10Mi
+            limits:
+              memory: 20Mi
+          readinessProbe:
+            tcpSocket:
+              port: valkey
+          volumeMounts:
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: data
+          emptyDir: {}

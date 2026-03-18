@@ -11,3 +11,17 @@ spec:
       port: 8080
       targetPort: 8080
   type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: qrnroll-valkey
+spec:
+  selector:
+    app: qrnroll-valkey
+  ports:
+    - name: valkey
+      protocol: TCP
+      port: 6379
+      targetPort: 6379
+  type: ClusterIP

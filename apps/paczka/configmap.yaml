@@ -11,7 +11,12 @@ data:
           name: Paczka
     frontend:
       name: "Paczka"
+      description: "Paczka - paczka.ftp.sh"
       disableDefaultLinks: true
+      externalLinks:
+        - text: "Zgłoś problem"
+          title: "Kontakt"
+          url: "https://github.com/Nasus20202/cluster-argocd/issues/new"
     auth:
       tokenExpirationHours: 720
     userDefaults:

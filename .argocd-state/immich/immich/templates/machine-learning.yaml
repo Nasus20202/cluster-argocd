@@ -10,7 +10,7 @@ metadata:
     app.kubernetes.io/name: machine-learning
     app.kubernetes.io/service: immich-machine-learning
     app.kubernetes.io/version: v2.6.3
-    helm.sh/chart: immich-0.11.0
+    helm.sh/chart: immich-0.11.1
   namespace: immich
 spec:
   type: ClusterIP
@@ -35,7 +35,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: machine-learning
     app.kubernetes.io/version: v2.6.3
-    helm.sh/chart: immich-0.11.0
+    helm.sh/chart: immich-0.11.1
   namespace: immich
 spec:
   revisionHistoryLimit: 3

@@ -10,7 +10,7 @@ metadata:
     app.kubernetes.io/name: server
     app.kubernetes.io/service: immich-server
     app.kubernetes.io/version: v2.6.3
-    helm.sh/chart: immich-0.11.0
+    helm.sh/chart: immich-0.11.1
   namespace: immich
 spec:
   type: ClusterIP
@@ -37,7 +37,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: server
     app.kubernetes.io/version: v2.6.3
-    helm.sh/chart: immich-0.11.0
+    helm.sh/chart: immich-0.11.1
   namespace: immich
 spec:
   revisionHistoryLimit: 3
@@ -138,7 +138,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: server
     app.kubernetes.io/version: v2.6.3
-    helm.sh/chart: immich-0.11.0
+    helm.sh/chart: immich-0.11.1
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     nginx.ingress.kubernetes.io/proxy-body-size: "0"

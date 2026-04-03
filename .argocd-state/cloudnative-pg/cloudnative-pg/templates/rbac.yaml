@@ -6,10 +6,10 @@ metadata:
   name: cloudnative-pg
   namespace: cloudnative-pg
   labels:
-    helm.sh/chart: cloudnative-pg-0.27.1
+    helm.sh/chart: cloudnative-pg-0.28.0
     app.kubernetes.io/name: cloudnative-pg
     app.kubernetes.io/instance: cloudnative-pg
-    app.kubernetes.io/version: "1.28.1"
+    app.kubernetes.io/version: "1.29.0"
     app.kubernetes.io/managed-by: Helm
 ---
 # Source: cloudnative-pg/templates/rbac.yaml
@@ -18,10 +18,10 @@ kind: ClusterRole
 metadata:
   name: cloudnative-pg
   labels:
-    helm.sh/chart: cloudnative-pg-0.27.1
+    helm.sh/chart: cloudnative-pg-0.28.0
     app.kubernetes.io/name: cloudnative-pg
     app.kubernetes.io/instance: cloudnative-pg
-    app.kubernetes.io/version: "1.28.1"
+    app.kubernetes.io/version: "1.29.0"
     app.kubernetes.io/managed-by: Helm
 rules:
 - apiGroups:
@@ -258,10 +258,10 @@ kind: ClusterRole
 metadata:
   name: cloudnative-pg-view
   labels:
-    helm.sh/chart: cloudnative-pg-0.27.1
+    helm.sh/chart: cloudnative-pg-0.28.0
     app.kubernetes.io/name: cloudnative-pg
     app.kubernetes.io/instance: cloudnative-pg
-    app.kubernetes.io/version: "1.28.1"
+    app.kubernetes.io/version: "1.29.0"
     app.kubernetes.io/managed-by: Helm
 rules:
 - apiGroups:
@@ -289,10 +289,10 @@ kind: ClusterRole
 metadata:
   name: cloudnative-pg-edit
   labels:
-    helm.sh/chart: cloudnative-pg-0.27.1
+    helm.sh/chart: cloudnative-pg-0.28.0
     app.kubernetes.io/name: cloudnative-pg
     app.kubernetes.io/instance: cloudnative-pg
-    app.kubernetes.io/version: "1.28.1"
+    app.kubernetes.io/version: "1.29.0"
     app.kubernetes.io/managed-by: Helm
 rules:
 - apiGroups:
@@ -322,10 +322,10 @@ kind: ClusterRoleBinding
 metadata:
   name: cloudnative-pg
   labels:
-    helm.sh/chart: cloudnative-pg-0.27.1
+    helm.sh/chart: cloudnative-pg-0.28.0
     app.kubernetes.io/name: cloudnative-pg
     app.kubernetes.io/instance: cloudnative-pg
-    app.kubernetes.io/version: "1.28.1"
+    app.kubernetes.io/version: "1.29.0"
     app.kubernetes.io/managed-by: Helm
 roleRef:
   apiGroup: rbac.authorization.k8s.io

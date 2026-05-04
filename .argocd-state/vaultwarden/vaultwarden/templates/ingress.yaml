@@ -7,10 +7,10 @@ metadata:
   namespace: vaultwarden
   labels:
     app.kubernetes.io/component: vaultwarden
-    helm.sh/chart: vaultwarden-0.36.3
+    helm.sh/chart: vaultwarden-0.36.4
     app.kubernetes.io/name: vaultwarden
     app.kubernetes.io/instance: vaultwarden
-    app.kubernetes.io/version: "1.35.8"
+    app.kubernetes.io/version: "1.36.0"
     app.kubernetes.io/managed-by: Helm
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod

@@ -6,7 +6,7 @@ metadata:
   name: cloudnative-pg
   namespace: cloudnative-pg
   labels:
-    helm.sh/chart: cloudnative-pg-0.28.1
+    helm.sh/chart: cloudnative-pg-0.28.2
     app.kubernetes.io/name: cloudnative-pg
     app.kubernetes.io/instance: cloudnative-pg
     app.kubernetes.io/version: "1.29.1"
@@ -20,9 +20,9 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/rbac: e06a0c7e7729b32b3f06a2af183a8012a29f4294f9748c7d15b6cd11f6b02915
-        checksum/config: 4121b2c71e617c30520d3a8c835e0b679cbd1ee72d8e63d7fa91db73e75bf1e7
-        checksum/monitoring-config: aebf57830b86d90ac4fba1caa333c3cf274527b6210d4d2ba9438d2a1eb72d57
+        checksum/rbac: de1893fe73cb4a732a34dfc9010586666d3cbb25ccdce87bfe27a05faebd1051
+        checksum/config: 230f2a9e55a5dbc43268219ac9eea0ba30ad92b72a29234d99665ccba35e2287
+        checksum/monitoring-config: e029fcb861f94835e364ba9142e66dc421d16d528da505386c7ec1df19152215
       labels:
         app.kubernetes.io/name: cloudnative-pg
         app.kubernetes.io/instance: cloudnative-pg

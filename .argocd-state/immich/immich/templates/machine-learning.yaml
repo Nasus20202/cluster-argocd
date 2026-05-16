@@ -1,6 +1,19 @@
 ---
 # Source: immich/templates/machine-learning.yaml
 apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: immich-machine-learning
+  labels:
+    app.kubernetes.io/instance: immich
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: machine-learning
+    app.kubernetes.io/version: v2.6.3
+    helm.sh/chart: immich-0.12.0
+  namespace: immich
+---
+# Source: immich/templates/machine-learning.yaml
+apiVersion: v1
 kind: Service
 metadata:
   name: immich-machine-learning
@@ -10,7 +23,7 @@ metadata:
     app.kubernetes.io/name: machine-learning
     app.kubernetes.io/service: immich-machine-learning
     app.kubernetes.io/version: v2.6.3
-    helm.sh/chart: immich-0.11.1
+    helm.sh/chart: immich-0.12.0
   namespace: immich
 spec:
   type: ClusterIP
@@ -35,7 +48,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: machine-learning
     app.kubernetes.io/version: v2.6.3
-    helm.sh/chart: immich-0.11.1
+    helm.sh/chart: immich-0.12.0
   namespace: immich
 spec:
   revisionHistoryLimit: 3
@@ -55,8 +68,8 @@ spec:
         app.kubernetes.io/name: machine-learning
     spec: 
       enableServiceLinks: false
-      serviceAccountName: default
-      automountServiceAccountToken: true
+      serviceAccountName: immich-machine-learning
+      automountServiceAccountToken: false
       hostIPC: false
       hostNetwork: false
       hostPID: false

@@ -7,7 +7,7 @@ metadata:
   namespace: vaultwarden
   labels:
     app.kubernetes.io/component: vaultwarden
-    helm.sh/chart: vaultwarden-0.36.4
+    helm.sh/chart: vaultwarden-0.38.0
     app.kubernetes.io/name: vaultwarden
     app.kubernetes.io/instance: vaultwarden
     app.kubernetes.io/version: "1.36.0"
@@ -21,7 +21,7 @@ metadata:
   namespace: vaultwarden
   labels:
     app.kubernetes.io/component: vaultwarden
-    helm.sh/chart: vaultwarden-0.36.4
+    helm.sh/chart: vaultwarden-0.38.0
     app.kubernetes.io/name: vaultwarden
     app.kubernetes.io/instance: vaultwarden
     app.kubernetes.io/version: "1.36.0"
@@ -51,7 +51,7 @@ metadata:
   namespace: vaultwarden
   labels:
     app.kubernetes.io/component: vaultwarden
-    helm.sh/chart: vaultwarden-0.36.4
+    helm.sh/chart: vaultwarden-0.38.0
     app.kubernetes.io/name: vaultwarden
     app.kubernetes.io/instance: vaultwarden
     app.kubernetes.io/version: "1.36.0"

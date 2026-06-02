@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: janr
-          image: ghcr.io/nasus20202/janr:1.203.0
+          image: ghcr.io/nasus20202/janr:1.205.0
           envFrom:
             - configMapRef:
                 name: janr-cm

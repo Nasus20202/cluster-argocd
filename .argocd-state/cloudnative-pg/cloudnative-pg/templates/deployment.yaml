@@ -109,6 +109,7 @@ spec:
           defaultMode: 420
           optional: true
           secretName: cnpg-webhook-cert
+
 ---
 # Source: cloudnative-pg/templates/deployment.yaml
 #

@@ -21,3 +21,5 @@ subjects:
     kind: ServiceAccount
     name: sealed-secrets
     namespace: sealed-secrets
+
+

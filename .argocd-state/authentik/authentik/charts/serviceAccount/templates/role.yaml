@@ -84,3 +84,4 @@ rules:
       - customresourcedefinitions
     verbs:
       - list
+

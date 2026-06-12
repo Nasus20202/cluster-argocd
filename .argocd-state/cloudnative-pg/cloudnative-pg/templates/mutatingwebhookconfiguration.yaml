@@ -95,6 +95,7 @@ webhooks:
     resources:
     - scheduledbackups
   sideEffects: None
+
 ---
 # Source: cloudnative-pg/templates/mutatingwebhookconfiguration.yaml
 #

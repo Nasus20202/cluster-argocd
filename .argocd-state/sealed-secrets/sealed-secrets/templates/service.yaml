@@ -49,3 +49,4 @@ spec:
   selector:
     app.kubernetes.io/name: sealed-secrets
     app.kubernetes.io/instance: sealed-secrets
+

@@ -40,3 +40,4 @@ spec:
               name: vaultwarden
               port:
                 name: "http"
+

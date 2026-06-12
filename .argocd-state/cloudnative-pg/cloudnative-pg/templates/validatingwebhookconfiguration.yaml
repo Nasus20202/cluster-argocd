@@ -116,6 +116,7 @@ webhooks:
       resources:
         - poolers
   sideEffects: None
+
 ---
 # Source: cloudnative-pg/templates/validatingwebhookconfiguration.yaml
 #

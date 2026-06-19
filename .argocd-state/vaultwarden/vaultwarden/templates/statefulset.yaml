@@ -7,7 +7,7 @@ metadata:
   namespace: vaultwarden
   labels:
     app.kubernetes.io/component: vaultwarden
-    helm.sh/chart: vaultwarden-0.39.0
+    helm.sh/chart: vaultwarden-0.39.1
     app.kubernetes.io/name: vaultwarden
     app.kubernetes.io/instance: vaultwarden
     app.kubernetes.io/version: "1.36.0"
@@ -27,8 +27,8 @@ spec:
         app.kubernetes.io/name: vaultwarden
         app.kubernetes.io/instance: vaultwarden
       annotations:
-        checksum/config: c37c940820456e2388f934c13c616c8ba14fedfd
-        checksum/secret: af18bd3f4766ea7fb2861fb23629f1bc4e825790
+        checksum/config: f28f158d48f81b80669663f543c323ef3c199c21
+        checksum/secret: e8be97cbf55f6980a02c80b7cdd02c5a17e41380
     spec:
       
       containers:

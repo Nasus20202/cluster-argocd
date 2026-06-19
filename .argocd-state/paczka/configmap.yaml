@@ -14,16 +14,21 @@ data:
       description: "Paczka - paczka.ftp.sh"
       disableDefaultLinks: true
       externalLinks:
+        - text: "Status"
+          title: "Status"
+          url: "https://uptime.nasus.dev/status/paczka"
         - text: "Zgłoś problem"
           title: "Kontakt"
           url: "https://github.com/Nasus20202/cluster-argocd/issues/new"
     auth:
       tokenExpirationHours: 720
     userDefaults:
-      singleClick: true
+      listing:
+        singleClick: true
       locale: pl
-      disableSettings: true
-      lockPassword: true
+      account:
+        disableSettings: true
+        lockPassword: true
 ---
 apiVersion: v1
 kind: ConfigMap

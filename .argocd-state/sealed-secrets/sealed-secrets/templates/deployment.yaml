@@ -7,10 +7,10 @@ metadata:
   namespace: sealed-secrets
   labels:
     app.kubernetes.io/name: sealed-secrets
-    helm.sh/chart: sealed-secrets-2.18.6
+    helm.sh/chart: sealed-secrets-2.19.0
     app.kubernetes.io/instance: sealed-secrets
     app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/version: 0.37.0
+    app.kubernetes.io/version: 0.38.1
     app.kubernetes.io/part-of: sealed-secrets
   annotations:
 spec:
@@ -27,6 +27,8 @@ spec:
     spec:
       securityContext:
         fsGroup: 65534
+        seccompProfile:
+          type: RuntimeDefault
       serviceAccountName: sealed-secrets
       containers:
         - name: controller
@@ -40,7 +42,7 @@ spec:
             - :8080
             - --listen-metrics-addr
             - :8081
-          image: docker.io/bitnami/sealed-secrets-controller:0.37.0
+          image: docker.io/bitnami/sealed-secrets-controller:0.38.1
           imagePullPolicy: IfNotPresent
           env:
             - name: GOMEMLIMIT
@@ -80,6 +82,7 @@ spec:
               cpu: 10m
               memory: 50Mi
           securityContext:
+            allowPrivilegeEscalation: false
             capabilities:
               drop:
               - ALL

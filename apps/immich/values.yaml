@@ -4,7 +4,7 @@ controllers:
       main:
         image:
           repository: immich-app/immich-server
-          tag: v3.0.2
+          tag: v3.0.3
           registry: ghcr.io
 
 immich:

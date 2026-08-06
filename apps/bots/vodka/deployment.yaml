@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: vodka
-          image: ghcr.io/nasus20202/vodka:1.141.0
+          image: ghcr.io/nasus20202/vodka:1.143.0
           envFrom:
             - configMapRef:
                 name: vodka-cm

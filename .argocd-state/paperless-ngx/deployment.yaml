@@ -142,7 +142,7 @@ spec:
     spec:
       containers:
         - name: gotenberg
-          image: gotenberg/gotenberg:8.34.0
+          image: gotenberg/gotenberg:8.35.0
           command:
             [
               "gotenberg",

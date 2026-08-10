@@ -1,0 +1,86 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hermes-cm
+data:
+  DISCORD_ALLOWED_USERS: "374952720295133184"
+  DISCORD_HOME_CHANNEL: "1533531776306122935"
+  HERMES_DASHBOARD: "1"
+  HERMES_DASHBOARD_HOST: "0.0.0.0"
+  HERMES_DASHBOARD_PORT: "9119"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hermes-config
+data:
+  config.yaml: |
+    model:
+      default: deepseek-v4-flash
+      provider: opencode-go
+      base_url: https://opencode.ai/zen/go/v1
+      api_mode: chat_completions
+    agent:
+      max_turns: 500
+      reasoning_effort: medium
+    auxiliary:
+      vision:
+        provider: opencode-go
+        model: minimax-m3
+    terminal:
+      backend: local
+    tool_loop_guardrails:
+      warnings_enabled: true
+      hard_stop_enabled: true
+      warn_after:
+        exact_failure: 2
+        same_tool_failure: 3
+        idempotent_no_progress: 2
+      hard_stop_after:
+        exact_failure: 5
+        same_tool_failure: 8
+        idempotent_no_progress: 5
+    compression:
+      enabled: true
+      threshold: 0.5
+      target_ratio: 0.2
+      protect_last_n: 20
+      progress_notices: false
+    memory:
+      memory_enabled: true
+      user_profile_enabled: true
+      memory_char_limit: 2200
+      user_char_limit: 1375
+    group_sessions_per_user: true
+    platforms:
+      discord:
+        extra:
+          require_mention: false
+    platform_toolsets:
+      discord:
+        - bfl
+        - browser
+        - clarify
+        - code_execution
+        - computer_use
+        - cronjob
+        - delegation
+        - file
+        - image_gen
+        - memory
+        - session_search
+        - skills
+        - terminal
+        - todo
+        - tts
+        - vision
+        - web
+    dashboard:
+      oauth:
+        provider: self-hosted
+        self_hosted:
+          issuer: https://sso.nasus.dev/application/o/hermes/
+          client_id: YJm0MJI616lpV5ZlYMhLMk3CfNBjfskUfCU3XTPT
+          scopes: openid profile email
+      public_url: https://hermes.nasus.dev
+    _config_version: 33

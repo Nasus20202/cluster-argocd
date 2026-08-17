@@ -8,9 +8,9 @@ metadata:
     app.kubernetes.io/name: nextcloud
     app.kubernetes.io/instance: nextcloud
     app.kubernetes.io/component: app
-    helm.sh/chart: nextcloud-9.2.5
+    helm.sh/chart: nextcloud-9.2.6
     app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/version: "34.0.2"
+    app.kubernetes.io/version: "34.0.3"
   annotations:
     helm.sh/resource-policy: keep
 spec:

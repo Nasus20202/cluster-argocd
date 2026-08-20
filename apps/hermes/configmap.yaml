@@ -15,18 +15,9 @@ metadata:
   name: hermes-config
 data:
   config.yaml: |
-    model:
-      default: deepseek-v4-flash
-      provider: opencode-go
-      base_url: https://opencode.ai/zen/go/v1
-      api_mode: chat_completions
     agent:
       max_turns: 500
       reasoning_effort: medium
-    auxiliary:
-      vision:
-        provider: opencode-go
-        model: minimax-m3
     terminal:
       backend: local
     tool_loop_guardrails:

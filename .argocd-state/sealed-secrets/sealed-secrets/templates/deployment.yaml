@@ -7,10 +7,10 @@ metadata:
   namespace: sealed-secrets
   labels:
     app.kubernetes.io/name: sealed-secrets
-    helm.sh/chart: sealed-secrets-2.19.2
+    helm.sh/chart: sealed-secrets-2.19.3
     app.kubernetes.io/instance: sealed-secrets
     app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/version: 0.39.0
+    app.kubernetes.io/version: 0.39.1
     app.kubernetes.io/part-of: sealed-secrets
   annotations:
 spec:
@@ -42,7 +42,7 @@ spec:
             - :8080
             - --listen-metrics-addr
             - :8081
-          image: docker.io/bitnami/sealed-secrets-controller:0.39.0
+          image: docker.io/bitnami/sealed-secrets-controller:0.39.1
           imagePullPolicy: IfNotPresent
           env:
             - name: GOMEMLIMIT

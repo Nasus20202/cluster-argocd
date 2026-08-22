@@ -11,7 +11,7 @@ spec:
       restartPolicy: OnFailure
       containers:
         - name: vchord-update
-          image: alpine/psql:18.4
+          image: alpine/psql:18.6
           args:
             - -c
             - "ALTER EXTENSION vchord UPDATE;"

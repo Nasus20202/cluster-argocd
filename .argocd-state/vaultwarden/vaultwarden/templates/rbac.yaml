@@ -7,9 +7,9 @@ metadata:
   namespace: vaultwarden
   labels:
     app.kubernetes.io/component: vaultwarden
-    helm.sh/chart: vaultwarden-0.46.0
+    helm.sh/chart: vaultwarden-0.46.1
     app.kubernetes.io/name: vaultwarden
     app.kubernetes.io/instance: vaultwarden
-    app.kubernetes.io/version: "1.37.1"
+    app.kubernetes.io/version: "1.37.2"
     app.kubernetes.io/managed-by: Helm
 

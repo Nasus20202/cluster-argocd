@@ -27,6 +27,8 @@ spec:
               mountPath: /var/lib/clickhouse
             - name: config
               mountPath: /etc/clickhouse-server/config.d
+            - name: user-config
+              mountPath: /etc/clickhouse-server/users.d
           envFrom:
             - secretRef:
                 name: clickhouse-secret
@@ -47,6 +49,17 @@ spec:
         - name: config
           configMap:
             name: clickhouse-config
+            items:
+              - key: logging_rules.xml
+                path: logging_rules.xml
+              - key: network.xml
+                path: network.xml
+        - name: user-config
+          configMap:
+            name: clickhouse-config
+            items:
+              - key: user_settings.xml
+                path: user_settings.xml
 ---
 apiVersion: apps/v1
 kind: Deployment

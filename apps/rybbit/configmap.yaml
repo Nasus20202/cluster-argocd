@@ -3,12 +3,6 @@ kind: ConfigMap
 metadata:
   name: clickhouse-config
 data:
-  enable_json.xml: |
-    <clickhouse>
-      <settings>
-        <enable_json_type>1</enable_json_type>
-      </settings>
-    </clickhouse>
   logging_rules.xml: |
     <clickhouse>
       <logger>
@@ -28,10 +22,11 @@ data:
     <clickhouse>
       <listen_host>0.0.0.0</listen_host>
     </clickhouse>
-  user_logging.xml: |
+  user_settings.xml: |
     <clickhouse>
       <profiles>
         <default>
+          <enable_json_type>1</enable_json_type>
           <log_queries>0</log_queries>
           <log_query_threads>0</log_query_threads>
         </default>

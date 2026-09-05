@@ -28,7 +28,9 @@ spec:
             - name: config
               mountPath: /etc/clickhouse-server/config.d
             - name: user-config
-              mountPath: /etc/clickhouse-server/users.d
+              mountPath: /etc/clickhouse-server/users.d/user_settings.xml
+              subPath: user_settings.xml
+              readOnly: true
           envFrom:
             - secretRef:
                 name: clickhouse-secret

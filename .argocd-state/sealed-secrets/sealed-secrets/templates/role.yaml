@@ -29,6 +29,7 @@ rules:
     verbs:
       - create
       - list
+
 ---
 # Source: sealed-secrets/templates/role.yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -63,3 +64,4 @@ rules:
     verbs:
       - create
       - get
+

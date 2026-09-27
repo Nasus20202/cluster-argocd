@@ -22,6 +22,7 @@ subjects:
     kind: ServiceAccount
     name: sealed-secrets
     namespace: sealed-secrets
+
 ---
 # Source: sealed-secrets/templates/role-binding.yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -45,3 +46,5 @@ subjects:
   - apiGroup: rbac.authorization.k8s.io
     kind: Group
     name: system:authenticated
+  
+

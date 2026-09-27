@@ -11,6 +11,11 @@ metadata:
     app.kubernetes.io/version: v2.6.3
     helm.sh/chart: immich-0.12.0
   namespace: immich
+
+
+
+
+
 ---
 # Source: immich/templates/machine-learning.yaml
 apiVersion: v1
@@ -139,3 +144,7 @@ spec:
       volumes: 
         - emptyDir: {}
           name: cache
+
+
+  
+

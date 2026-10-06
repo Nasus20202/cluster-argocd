@@ -7,10 +7,10 @@ metadata:
   namespace: vaultwarden
   labels:
     app.kubernetes.io/component: vaultwarden
-    helm.sh/chart: vaultwarden-0.46.2
+    helm.sh/chart: vaultwarden-0.46.3
     app.kubernetes.io/name: vaultwarden
     app.kubernetes.io/instance: vaultwarden
-    app.kubernetes.io/version: "1.37.3"
+    app.kubernetes.io/version: "1.37.4"
     app.kubernetes.io/managed-by: Helm
 spec:
   serviceName: vaultwarden
@@ -27,12 +27,12 @@ spec:
         app.kubernetes.io/name: vaultwarden
         app.kubernetes.io/instance: vaultwarden
       annotations:
-        checksum/config: d1aa86d5475d8626018928dcc657e7b578d73551
-        checksum/secret: b78daab62e607e3833ef67226bf317fc3649ceb2
+        checksum/config: 2146b7804be9699e2f81b8d2a8fa2e522a364404
+        checksum/secret: 1ee806aaf5aced5f44f8b19e40d70c6ebb8ffa32
     spec:
       
       containers:
-        - image: docker.io/vaultwarden/server:1.37.3-alpine
+        - image: docker.io/vaultwarden/server:1.37.4-alpine
           imagePullPolicy: IfNotPresent
           name: vaultwarden
           envFrom:

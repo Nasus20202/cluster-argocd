@@ -5,7 +5,10 @@ metadata:
 data:
   config.yaml: |
     server:
-      database: "/paczka/paczka.db"
+      database:
+        path: "/paczka/paczka.sqlite"
+        # Remove after the v2 migration has been verified
+        migrateFrom: "/paczka/paczka.db"
       sources:
         - path: "/paczka/files"
           name: Paczka
@@ -25,7 +28,8 @@ data:
     userDefaults:
       listing:
         singleClick: true
-      locale: pl
+      ui:
+        locale: pl
       account:
         disableSettings: true
         lockPassword: true

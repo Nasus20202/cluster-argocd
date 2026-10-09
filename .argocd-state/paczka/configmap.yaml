@@ -5,10 +5,17 @@ metadata:
 data:
   config.yaml: |
     server:
-      database: "/paczka/paczka.db"
+      database:
+        path: "/paczka/paczka.sqlite"
+        # Remove after the v2 migration has been verified
+        migrateFrom: "/paczka/paczka.db"
       sources:
         - path: "/paczka/files"
           name: Paczka
+    http:
+      # Only safe while the nginx sidecar behind the Ingress is the sole
+      # entry point (the Service exposes only the nginx port).
+      trustProxyHeaders: true
     frontend:
       name: "Paczka"
       description: "Paczka - paczka.ftp.sh"
@@ -25,7 +32,8 @@ data:
     userDefaults:
       listing:
         singleClick: true
-      locale: pl
+      ui:
+        locale: pl
       account:
         disableSettings: true
         lockPassword: true

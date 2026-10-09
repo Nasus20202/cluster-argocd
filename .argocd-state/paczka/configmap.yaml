@@ -7,8 +7,6 @@ data:
     server:
       database:
         path: "/paczka/paczka.sqlite"
-        # Remove after the v2 migration has been verified
-        migrateFrom: "/paczka/paczka.db"
       sources:
         - path: "/paczka/files"
           name: Paczka

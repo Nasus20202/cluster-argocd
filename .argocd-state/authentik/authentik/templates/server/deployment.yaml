@@ -6,13 +6,13 @@ metadata:
   name: authentik-server
   namespace: "authentik"
   labels:
-    helm.sh/chart: "authentik-2026.8.4"
+    helm.sh/chart: "authentik-2026.8.5"
     app.kubernetes.io/name: "authentik"
     app.kubernetes.io/instance: "authentik"
     app.kubernetes.io/component: "server"
     app.kubernetes.io/managed-by: "Helm"
     app.kubernetes.io/part-of: "authentik"
-    app.kubernetes.io/version: "2026.8.4"
+    app.kubernetes.io/version: "2026.8.5"
 spec:
   replicas: 1
   revisionHistoryLimit: 3
@@ -24,20 +24,20 @@ spec:
   template:
     metadata:
       labels:
-        helm.sh/chart: "authentik-2026.8.4"
+        helm.sh/chart: "authentik-2026.8.5"
         app.kubernetes.io/name: "authentik"
         app.kubernetes.io/instance: "authentik"
         app.kubernetes.io/component: "server"
         app.kubernetes.io/managed-by: "Helm"
         app.kubernetes.io/part-of: "authentik"
-        app.kubernetes.io/version: "2026.8.4"
+        app.kubernetes.io/version: "2026.8.5"
       annotations:
-        checksum/secret: e35a7328d76ae61a2537fcb8cd453a4fadbf4d43b3108b617bf40cad0956d442
+        checksum/secret: ca57d387759f3d6e8df3839b6f5ab3bc744636a91897b79b3a3d06e4737e246b
     spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: server
-          image: ghcr.io/goauthentik/server:2026.8.4
+          image: ghcr.io/goauthentik/server:2026.8.5
           imagePullPolicy: IfNotPresent
           args:
             - server

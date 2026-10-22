@@ -1,7 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["github>Nasus20202/argocd-renovate"],
-  "automergeSchedule": ["* 0-7 * * *"],
   "packageRules": [
     {
       "description": "Version format is {psql_major}.{psql_minor}-{ext_major}.{ext_minor}.{ext_patch} (e.g. 18.1-1.0.0). Regex maps: major=psql_major, minor=psql_minor, patch=ext_major, build=ext_minor, revision=ext_patch. This ensures both psql and extension versions are compared and bare tags (e.g. 18.2) are ignored.",

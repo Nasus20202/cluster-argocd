@@ -5,6 +5,8 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - .argocd-state/**
   pull_request:
     branches:
       - main

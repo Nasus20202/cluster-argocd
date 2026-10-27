@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: valkey
-          image: valkey/valkey:9.1.2-alpine
+          image: valkey/valkey:9.1.3-alpine
           ports:
             - containerPort: 6379
               name: valkey
@@ -142,7 +142,7 @@ spec:
     spec:
       containers:
         - name: gotenberg
-          image: gotenberg/gotenberg:8.38.1
+          image: gotenberg/gotenberg:8.39.0
           command:
             [
               "gotenberg",

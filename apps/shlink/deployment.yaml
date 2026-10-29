@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: shlink
-          image: shlinkio/shlink:5.1.8
+          image: shlinkio/shlink:5.1.8@sha256:68a722f7677008a50ccf3a9e570966bc37d7627fe6a870b86be28c5dcf9085ee
           env:
             - name: INITIAL_API_KEY
               valueFrom:
@@ -64,7 +64,7 @@ spec:
     spec:
       containers:
         - name: shlink-web-client
-          image: shlinkio/shlink-web-client:4.8.1
+          image: shlinkio/shlink-web-client:4.8.1@sha256:dc8bf3565a25bd0602ff11ee352920830ce457ab58a2b2c62f2ebb23e8c8b9ee
           env:
             - name: SHLINK_SERVER_URL
               value: https://link.nasus.dev

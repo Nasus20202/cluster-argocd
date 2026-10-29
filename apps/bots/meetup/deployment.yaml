@@ -16,7 +16,7 @@ spec:
     spec:
       initContainers:
         - name: chown-db-data
-          image: busybox
+          image: busybox@sha256:a46257e06c82ad85242d0d38077d0a52d9896389ca60a1a59d3463db586e5fa4
           imagePullPolicy: IfNotPresent
           command: ["chown", "-R", "1000:1000", "/db"]
           volumeMounts:
@@ -24,7 +24,7 @@ spec:
               mountPath: "/db"
       containers:
         - name: meetup
-          image: ghcr.io/kanareklife/meetupbot:main
+          image: ghcr.io/kanareklife/meetupbot:main@sha256:8f94746df0b6d73f916c5c6ffb0a22e7c9978177624742f64819e3de4199d5a0
           imagePullPolicy: Always
           envFrom:
             - configMapRef:

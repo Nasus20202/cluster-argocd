@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: clickhouse
-          image: clickhouse/clickhouse-server:26.10.3
+          image: clickhouse/clickhouse-server:26.10.3@sha256:739e099abd1157390960a59e4532d21781d8fde57e6e4151cb920ea02c30b1ce
           ports:
             - name: http
               containerPort: 8123
@@ -79,7 +79,7 @@ spec:
     spec:
       containers:
         - name: rybbit-backend
-          image: ghcr.io/rybbit-io/rybbit-backend:v2.9.2
+          image: ghcr.io/rybbit-io/rybbit-backend:v2.9.2@sha256:e5fc900b59251f4e43f8caef600b0cfd26a63c7b1732e725900bf4ea2ab8a3d7
           ports:
             - name: http
               containerPort: 3001
@@ -130,7 +130,7 @@ spec:
     spec:
       containers:
         - name: client
-          image: ghcr.io/rybbit-io/rybbit-client:v2.9.2
+          image: ghcr.io/rybbit-io/rybbit-client:v2.9.2@sha256:9beb1cfe74bbb3bf7d7a74cf5d3b07639610637909f0dfafaa87d3a76b91ce2a
           ports:
             - name: http
               containerPort: 3002

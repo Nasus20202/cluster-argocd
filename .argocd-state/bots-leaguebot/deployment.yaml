@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: leaguebot
-          image: ghcr.io/nasus20202/lolbot:1.257.0
+          image: ghcr.io/nasus20202/lolbot:1.257.0@sha256:464cb329015b6216ae7f4cf03a5f3a321b93a820990777f8f6e3439846b2e936
           envFrom:
             - secretRef:
                 name: leaguebot-secret

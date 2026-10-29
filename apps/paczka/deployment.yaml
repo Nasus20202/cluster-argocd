@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: paczka
-          image: gtstef/filebrowser:2.0.2-stable
+          image: gtstef/filebrowser:2.0.2-stable@sha256:de2b4c4d18485ea202ab2cdada5bd25d8f0b8ed071712c8216a67194c31285ae
           ports:
             - name: http
               containerPort: 80
@@ -41,7 +41,7 @@ spec:
               subPath: config.yaml
       initContainers:
         - name: nginx
-          image: nginx:1.31.8-alpine
+          image: nginx:1.31.8-alpine@sha256:785835ea65db4bba6f021acc0f3be91b0fef76a53fe41f8588c6698d2aed0606
           restartPolicy: Always
           ports:
             - name: http-nginx

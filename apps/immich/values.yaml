@@ -1,18 +1,17 @@
-controllers:
-  main:
-    containers:
-      main:
-        image:
-          repository: immich-app/immich-server
-          tag: v3.3.6@sha256:e1981983b1c13f6024b57d72e7ecae3342eed1581201ab09fb248932d86c593a
-          registry: ghcr.io
-
 immich:
   persistence:
     library:
       existingClaim: immich-library-pvc
 
 server:
+  controllers:
+    main:
+      containers:
+        main:
+          image:
+            repository: immich-app/immich-server
+            tag: v3.3.6@sha256:e1981983b1c13f6024b57d72e7ecae3342eed1581201ab09fb248932d86c593a
+            registry: ghcr.io
   ingress:
     main:
       enabled: true
@@ -66,6 +65,10 @@ machine-learning:
     main:
       containers:
         main:
+          image:
+            repository: immich-app/immich-machine-learning
+            tag: v3.3.6
+            registry: ghcr.io
           resources:
             requests:
               cpu: 10m

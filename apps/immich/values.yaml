@@ -1,35 +1,16 @@
-controllers:
-  main:
-    containers:
-      main:
-        image:
-          repository: immich-app/immich-server
-          tag: v3.3.6@sha256:e1981983b1c13f6024b57d72e7ecae3342eed1581201ab09fb248932d86c593a
-          registry: ghcr.io
-
 immich:
   persistence:
     library:
       existingClaim: immich-library-pvc
 
 server:
-  ingress:
-    main:
-      enabled: true
-      annotations:
-        cert-manager.io/cluster-issuer: "letsencrypt-prod"
-      hosts:
-        - host: immich.nasus.dev
-          paths:
-            - path: "/"
-      tls:
-        - hosts:
-            - immich.nasus.dev
-          secretName: immich-tls
   controllers:
     main:
       containers:
         main:
+          image:
+            repository: ghcr.io/immich-app/immich-server
+            tag: v3.3.6@sha256:e1981983b1c13f6024b57d72e7ecae3342eed1581201ab09fb248932d86c593a
           env:
             DB_HOSTNAME: immich-postgres-rw
             DB_DATABASE_NAME: immich
@@ -47,6 +28,19 @@ server:
               memory: 500Mi
             limits:
               memory: 1Gi
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      hosts:
+        - host: immich.nasus.dev
+          paths:
+            - path: "/"
+      tls:
+        - hosts:
+            - immich.nasus.dev
+          secretName: immich-tls
 
 valkey:
   enabled: true
@@ -66,6 +60,9 @@ machine-learning:
     main:
       containers:
         main:
+          image:
+            repository: ghcr.io/immich-app/immich-machine-learning
+            tag: v3.3.6@sha256:14367bfb374b8576ddf49abd67c5ca0190a4c7fcf6303cdad65d7f7bf1a50bc2
           resources:
             requests:
               cpu: 10m

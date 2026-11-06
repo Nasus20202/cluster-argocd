@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: logenz
-          image: ghcr.io/nasus20202/logenz:1.118.0@sha256:5f83433f4d6176b2c2a4f7281148e06f53abb5d5e92ed94bca44471523facaad
+          image: ghcr.io/nasus20202/logenz:1.120.0@sha256:e18f9242dbda1f1a6761f8c0b3c7ba71aa600e632cc0adcc84f4b25f244cbfb8
           envFrom:
             - secretRef:
                 name: logenz-secret

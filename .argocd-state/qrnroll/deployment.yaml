@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: qrnroll
-          image: ghcr.io/nasus20202/qrnroll:1.1325.0@sha256:e59f17575b407da031b4bdc6a1eec704b11e1cb636d8193c07b4aa8146adfad5
+          image: ghcr.io/nasus20202/qrnroll:1.1329.0@sha256:14a85aaeee9de32ebb9aa31d0db1b2b450ca046402ed7c9589f02be5bf42a771
           ports:
             - name: http
               containerPort: 8080

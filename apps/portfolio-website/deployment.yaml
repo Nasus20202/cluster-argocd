@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: portfolio-website
-          image: ghcr.io/nasus20202/portfolio-website:2.873.0@sha256:db9c99c767fcac7efa710a4774161cd537e7a3ab5e7d9f8e540691ab6a57aaa2
+          image: ghcr.io/nasus20202/portfolio-website:2.880.0@sha256:aa68a4e0f1dc852406d870d2223183c09fb013f2f25bd96f8df0dad465f3e88e
           ports:
             - name: http
               containerPort: 8080

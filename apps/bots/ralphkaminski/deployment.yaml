@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: ralphkaminski
-          image: ghcr.io/nasus20202/ralphkaminski:1.326.0@sha256:62dd612c060d4f6a528b8665d9a0b70ec7488f528ed2a1a73445521e1789c586
+          image: ghcr.io/nasus20202/ralphkaminski:1.328.0@sha256:d57c6236e7788627f9ae721088cb81cd02a2e2eced061f0814dc33e2c033477d
           envFrom:
             - configMapRef:
                 name: ralphkaminski-cm

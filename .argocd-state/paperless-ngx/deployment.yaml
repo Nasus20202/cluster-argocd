@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: valkey
-          image: valkey/valkey:9.2.0-alpine@sha256:4d67e1af80c653bd46c0bbe8de438c81a6535ab5a39b22f2100028f314005663
+          image: valkey/valkey:9.2.0-alpine@sha256:c8e2d17498838af5d91e12eb7c11220b3434a7b7131a333e3af52ad5e0b80882
           ports:
             - containerPort: 6379
               name: valkey
@@ -142,7 +142,7 @@ spec:
     spec:
       containers:
         - name: gotenberg
-          image: gotenberg/gotenberg:9.8.0@sha256:5467aaf0bb2a8b296b589a388bc7fd2a0b245fd71e63a64bb42baba63cbf3914
+          image: gotenberg/gotenberg:9.9.0@sha256:2f4945f698c3d02f691a27d56bb8e7ba4585e6ab50bd233329a36eb0423ae587
           command:
             [
               "gotenberg",

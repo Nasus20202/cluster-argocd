@@ -79,6 +79,9 @@ spec:
             httpGet:
               path: /
               port: http
+              httpHeaders:
+                - name: Host
+                  value: paperless.nasus.dev
           volumeMounts:
             - name: data
               mountPath: /usr/src/paperless/data
